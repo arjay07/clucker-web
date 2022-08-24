@@ -8,6 +8,9 @@ import { LandingScreenComponent } from './screens/landing-screen/landing-screen.
   declarations: [
     LandingScreenComponent
   ],
+  exports: [
+    LandingScreenComponent
+  ],
   imports: [
     CommonModule
   ]
