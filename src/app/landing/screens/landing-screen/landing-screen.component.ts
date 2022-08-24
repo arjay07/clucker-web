@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-landing-screen',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingScreenComponent implements OnInit {
 
-  constructor() { }
+  canGoBack = false;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe({
+      next: event => {
+        this.canGoBack = (this.router.url !== '/');
+      }
+    })
+  }
+
 
   ngOnInit(): void {
   }

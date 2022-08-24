@@ -1,10 +1,10 @@
-<div class="flex flex-col justify-end items-center h-screen bg-primary">
+<div class="flex flex-col justify-end items-center h-screen bg-primary w-screen">
   <div class="my-36">
-    <img class="max-w-[300px]" src="assets/images/clucker_banner_reversed_400×100.png" alt="clucker" draggable="false" />
+    <img class="max-w-[300px]" src="assets/images/clucker_banner_reversed_1200x300.png" alt="clucker" draggable="false" />
   </div>
-  <div class="flex justify-center items-end">
-    <div class="flex justify-center items-center flex-col bg-white w-[80vw] md:w-[400px] h-full rounded-t-xl px-12 pt-12 shadow border">
-      <div class="mx-auto">
+  <div class="flex justify-center items-end w-screen">
+    <div class="flex justify-center items-center flex-col bg-white w-full h-full rounded-t-3xl pt-12 shadow-2xl border">
+      <div class="w-full px-20">
         <router-outlet></router-outlet>
       </div>
       <div class="text-gray-400 mt-20 mb-3">
@@ -13,4 +13,10 @@
     </div>
   </div>
 </div>
-
+<div class="absolute top-0 left-0 animate__animated animate__slideInLeft animate__faster" *ngIf="canGoBack">
+  <div class="p-5">
+    <button type="button" class="text-white active:scale-90 transition-transform" routerLink="/">
+      <fa-icon icon="chevron-left" size="2x"></fa-icon>
+    </button>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-username-form',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsernameFormComponent implements OnInit {
 
-  constructor() { }
+  username = '';
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  sendUsername() {
+    const usernameExists = true;
+
+    if (!usernameExists) {
+      this.router.navigate([ 'sign-up' ], {state: { 'username': this.username }});
+    } else {
+      this.router.navigate([ 'login' ], {state: { 'username': this.username }});
+    }
   }
 
 }
