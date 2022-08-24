@@ -1,22 +1,14 @@
-<div class="absolute top-0 left-0 min-h-screen w-screen bg-primary overflow-y-hidden overflow-x-hidden">
-</div>
-<div class="md:hidden egg">
-</div>
-<div class="absolute top-0 left-0 w-screen min-h-screen">
-  <div class="flex flex-col md:flex-row justify-around items-center w-full min-h-screen">
-    <div class="flex justify-start mx-5">
-      <img src="./assets/images/clucker_banner_reversed_400×100.png" alt="Clucker"/>
-    </div>
-    <div class="my-5 md:bg-white p-8 md:rounded-2xl md:shadow-2xl">
-      <div class="text-2xl mb-16 text-center">
-        Enter your <span class="font-bold">username</span>.
+<div class="flex flex-col justify-end items-center h-screen bg-primary">
+  <div class="my-36">
+    <img class="max-w-[300px]" src="assets/images/clucker_banner_reversed_400×100.png" alt="clucker" draggable="false" />
+  </div>
+  <div class="flex justify-center items-end">
+    <div class="flex justify-center items-center flex-col bg-white w-[80vw] md:w-[400px] h-full rounded-t-xl px-12 pt-12 shadow border">
+      <div class="mx-auto">
+        <router-outlet></router-outlet>
       </div>
-      <div class="my-5 text-xl">
-        <input type="text" class="rounded-full outline-none px-5 py-2 border-4 border-gray-300" placeholder="Who are you?"/>
-
-        <div class="my-5">
-          <button type="button" class="text-center w-full bg-primary text-white rounded-full py-2">Next</button>
-        </div>
+      <div class="text-gray-400 mt-20 mb-3">
+        &copy; Clucker 2022
       </div>
     </div>
   </div>
