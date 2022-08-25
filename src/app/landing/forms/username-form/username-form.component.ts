@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {LandingFormService} from '../../services/landing-form.service';
 
 @Component({
   selector: 'app-username-form',
@@ -8,21 +9,31 @@ import {Router} from '@angular/router';
 })
 export class UsernameFormComponent implements OnInit {
 
-  username = '';
+  checking = false;
 
-  constructor(private router: Router) { }
+  constructor(public landingFormService: LandingFormService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   sendUsername() {
-    const usernameExists = true;
+    this.checking = true;
+    const username = this.landingFormService.landingForm.username;
 
-    if (!usernameExists) {
-      this.router.navigate([ 'sign-up' ], {state: { 'username': this.username }});
-    } else {
-      this.router.navigate([ 'login' ], {state: { 'username': this.username }});
-    }
+    this.landingFormService.checkUsernameAvailability(username)
+      .subscribe({
+        next: available => {
+          if (!available) {
+            this.router.navigateByUrl('/login');
+          } else {
+            this.router.navigateByUrl('/sign-up');
+          }
+        },
+        complete: () => {
+          this.checking = false;
+        }
+      });
+
   }
 
 }

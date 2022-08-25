@@ -3,7 +3,7 @@
     Enter your <span class="font-bold text-primary">username</span>.
   </div>
   <div class="my-2 w-full">
-    <input type="text" [(ngModel)]="username"
+    <input type="text" [(ngModel)]="this.landingFormService.landingForm.username"
            #usernameField="ngModel"
            name="username"
            required

@@ -1,6 +1,6 @@
 <form (ngSubmit)="login()">
   <div class="text-xl my-8 text-center">
-    Welcome back, <span class="font-bold text-primary">{{username}}</span>!
+    Welcome back, <span class="font-bold text-primary">{{landingFormService.landingForm.username}}</span>!
   </div>
   <div class="my-2">
     <input autofocus type="password" [(ngModel)]="password" name="password" placeholder="Password" class="focus:scale-105 focus:border-b-primary transition-all outline-none border-b-2 py-1 px-3 w-full"/>

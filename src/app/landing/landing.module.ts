@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { LandingScreenComponent } from './screens/landing-screen/landing-screen.component';
 import {LandingRoutingModule} from './landing-routing.module';
 import { UsernameFormComponent } from './forms/username-form/username-form.component';
-import { LoginSignUpFormComponent } from './forms/login-form/login-sign-up-form.component';
-import {FormsModule} from '@angular/forms';
+import { LoginFormComponent } from './forms/login-form/login-form.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppIconsModule} from '../app-icons.module';
+import {HttpClientModule} from '@angular/common/http';
+import { SignUpFormComponent } from './forms/sign-up-form/sign-up-form.component';
 
 
 
@@ -13,7 +15,8 @@ import {AppIconsModule} from '../app-icons.module';
   declarations: [
     LandingScreenComponent,
     UsernameFormComponent,
-    LoginSignUpFormComponent
+    LoginFormComponent,
+    SignUpFormComponent
   ],
   exports: [
     LandingScreenComponent
@@ -22,6 +25,8 @@ import {AppIconsModule} from '../app-icons.module';
     CommonModule,
     LandingRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     AppIconsModule
   ]
 })

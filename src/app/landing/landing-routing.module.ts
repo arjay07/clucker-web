@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {UsernameFormComponent} from './forms/username-form/username-form.component';
-import {LoginSignUpFormComponent} from './forms/login-form/login-sign-up-form.component';
+import {LoginFormComponent} from './forms/login-form/login-form.component';
+import {SignUpFormComponent} from './forms/sign-up-form/sign-up-form.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,11 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        component: LoginSignUpFormComponent
+        component: LoginFormComponent
+      },
+      {
+        path: 'sign-up',
+        component: SignUpFormComponent
       }
     ]
   }

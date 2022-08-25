@@ -1,0 +1,26 @@
+<form (ngSubmit)="signUp()">
+  <div class="text-xl my-8 text-center">
+    Welcome to <span class="font-bold">Clucker</span>, <br/> <span class="font-bold text-primary">{{landingFormService.landingForm.username}}</span>!
+  </div>
+  <div class="my-2">
+    <input autofocus type="email"
+           [(ngModel)]="landingFormService.landingForm.email"
+           name="email"
+           placeholder="Email"
+           class="form-control-round my-2"/>
+    <input type="password"
+           [(ngModel)]="landingFormService"
+           name="password"
+           placeholder="Password"
+           class="form-control-round my-2"/>
+    <input type="password"
+           [(ngModel)]="landingFormService.landingForm.confirmPassword"
+           name="password"
+           placeholder="Confirm Password"
+           class="form-control-round my-2"/>
+
+    <button type="submit" class="rounded-full p-3 py-1 text-white bg-primary w-full mt-8 mb-3 active:scale-95 highlight-none transition-transform">
+      Login
+    </button>
+  </div>
+</form>
