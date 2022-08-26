@@ -8,6 +8,8 @@ import { NotificationsScreenComponent } from './screens/notifications-screen/not
 import { SearchScreenComponent } from './screens/search-screen/search-screen.component';
 import { LoginComponent } from './screens/login/login.component';
 import { NotFoundComponent } from './screens/not-found/not-found.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {AppIconsModule} from '../app-icons.module';
 
 
 
@@ -23,7 +25,9 @@ import { NotFoundComponent } from './screens/not-found/not-found.component';
   ],
   imports: [
     CommonModule,
-    CluckerRoutingModule
+    CluckerRoutingModule,
+    ReactiveFormsModule,
+    AppIconsModule
   ]
 })
 export class CluckerModule { }

@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="container flex flex-col md:flex-row md:justify-evenly justify-center items-center min-h-screen mx-auto">
+  <img alt="Clucker" src="assets/images/clucker_banner_1200×300.png" class="w-[300px] mx-auto my-10"/>
+  <div class="border p-5 rounded-xl shadow">
+    <div class="font-bold text-xl text-center mb-5">Login</div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="my-2">
+        <input type="text" class="form-control-round" formControlName="username" placeholder="Username"/>
+      </div>
+      <div>
+        <input type="password" class="form-control-round" formControlName="password" placeholder="Password"/>
+      </div>
+      <div class="text-end w-full">
+        <a routerLink="forgot-password" class="text-primary text-xs">Forgot Password?</a>
+      </div>
+      <div class="text-center mt-8 mb-3">
+        <div *ngIf="errorMessage" class="text-xs my-2 text-red-500 animate__animated animate__headShake animate__fast">
+          {{errorMessage}}
+        </div>
+        <button type="submit" [disabled]="loggingIn" class="btn-primary">
+          Login <fa-icon *ngIf="loggingIn" icon="spinner" [spin]="loggingIn"></fa-icon>
+        </button>
+      </div>
+
+      <div class="mt-6 mb-3 text-gray-400">
+        New to Clucker?
+      </div>
+      <div class="text-center">
+        <button type="button" class="btn-outline" routerLink="/get-started">
+          Sign Up
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="absolute bottom-0 left-0 text-gray-400 p-2">
+  &copy; Clucker 2022
+</div>

@@ -29,7 +29,7 @@ export class LoginFormComponent implements OnInit {
         password: this.password
       }, {
         success: () => {
-          this.router.navigate(['', 'my-feed']);
+          this.router.navigate(['']);
         },
         fail: (errorMessage) => {
           this.loginError = errorMessage;
