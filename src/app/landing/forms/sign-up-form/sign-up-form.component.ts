@@ -6,7 +6,7 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import {SignUpData} from '../../../interfaces/sign-up-data';
+import {SignUpData} from '@interfaces/sign-up-data';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({

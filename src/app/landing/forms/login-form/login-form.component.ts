@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LandingFormService} from '../../services/landing-form.service';
-import {AuthService} from '../../../services/auth.service';
+import {AuthService} from '@services/auth.service';
 import {Router} from '@angular/router';
 
 @Component({

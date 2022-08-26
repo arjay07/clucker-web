@@ -21,7 +21,17 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@clucker/*":  [ "src/app/clucker/*" ],
+      "@landing/*": [ "src/app/landing/*" ],
+      "@services/*": [ "src/app/services/*" ],
+      "@guards/*": [ "src/app/guards/*" ],
+      "@interfaces/*": [ "src/app/interfaces/*"],
+      "@interceptors/*": [ "src/app/interceptors/*"],
+      "@models/*": [ "src/app/interceptors/*"],
+      "@env": [ "src/environments/environment.ts" ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

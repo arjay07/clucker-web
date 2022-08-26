@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {LoginCredentials} from '../../interfaces/login-credentials';
-import {SignUpData} from '../../interfaces/sign-up-data';
+import {LoginCredentials} from '@interfaces/login-credentials';
+import {SignUpData} from '@interfaces/sign-up-data';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
+import {environment} from '@env';
 import {catchError, map, Observable, of, throwError} from 'rxjs';
 import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
+import {AuthService} from '@services/auth.service';
 
 @Injectable({
   providedIn: 'root'
