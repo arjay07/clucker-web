@@ -1,0 +1,28 @@
+<form (ngSubmit)="sendUsername()">
+  <div class="text-xl w-full my-8 text-center">
+    Enter your <span class="font-bold text-primary">username</span>.
+  </div>
+  <div class="my-2 w-full">
+    <input type="text" [(ngModel)]="this.landingFormService.username"
+           [disabled]="checking"
+           #usernameField="ngModel"
+           name="username"
+           required
+           pattern="^[A-Za-z0-9_.]+$"
+           minlength="6"
+           placeholder="Who are you?"
+           class="focus:scale-105 focus:border-b-primary transition-all outline-none border-b-2 py-1 px-3 w-full disabled:opacity-75"/>
+
+    <div *ngIf="usernameField.touched && usernameField.errors" class="text-xs w-full text-danger mt-2 animate__animated animate__headShake animate__fast">
+      <p *ngIf="usernameField.errors['required']">Username is required.</p>
+      <p *ngIf="usernameField.errors['pattern']">Username may only contain alphanumeric characters, underscores, and periods.</p>
+      <p *ngIf="usernameField.errors['minlength']">Username must be at least 6 characters long.</p>
+    </div>
+
+    <button type="submit"
+            [disabled]="usernameField.invalid || checking"
+            class="rounded-full p-3 py-1 text-white bg-primary w-full mt-8 mb-3 active:scale-95 highlight-none transition-all disabled:opacity-60">
+      Next <fa-icon [icon]="checking ? 'spinner' : 'chevron-right'" [spin]="checking"></fa-icon>
+    </button>
+  </div>
+</form>
