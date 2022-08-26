@@ -5,11 +5,18 @@ import {UsernameFormComponent} from './landing/forms/username-form/username-form
 import {MainComponent} from './clucker/main/main.component';
 import {SignUpFormComponent} from './landing/forms/sign-up-form/sign-up-form.component';
 import {LoginFormComponent} from './landing/forms/login-form/login-form.component';
+import {MyFeedScreenComponent} from './clucker/screens/my-feed-screen/my-feed-screen.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
+    children: [
+      {
+        path: '',
+        component: MyFeedScreenComponent
+      }
+    ]
   },
   {
     path: 'get-started',

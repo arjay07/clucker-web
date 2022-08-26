@@ -3,9 +3,6 @@ import {LandingFormService} from '../../services/landing-form.service';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
-  FormGroup,
-  ValidationErrors,
   ValidatorFn,
   Validators
 } from '@angular/forms';
@@ -81,7 +78,14 @@ export class SignUpFormComponent implements OnInit {
     this.landingFormService.submitForm('signup', formData)
       .subscribe({
         next: () => {
-          this.landingFormService.loginAndRedirectToApp(this.landingFormService.username, this.signUpFormGroup.controls.password.value!);
+          this.landingFormService.loginAndRedirectToApp(
+            this.landingFormService.username,
+            this.signUpFormGroup.controls.password.value!,
+            {
+              successfulLogin: () => {
+                this.signingUp = false;
+              }
+            });
         },
         error: (err) => {
           if (err instanceof HttpErrorResponse) {
@@ -89,6 +93,9 @@ export class SignUpFormComponent implements OnInit {
               this.submitErrorMessage = err.error;
             }
           }
+        },
+        complete: () => {
+          this.signingUp = false;
         }
       });
   }

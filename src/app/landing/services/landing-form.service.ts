@@ -5,6 +5,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {catchError, map, Observable, of, throwError} from 'rxjs';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class LandingFormService {
 
   username = '';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
 
   checkUsernameAvailability(username: string) {
     const { api } = environment;
@@ -62,8 +63,18 @@ export class LandingFormService {
     }
   }
 
-  loginAndRedirectToApp(username: string, password: string) {
-
+  loginAndRedirectToApp(username: string, password: string, callbacks: { successfulLogin: () => void, failedLogin?: () => void }) {
+    this.auth.login({ username, password },
+      {
+        success: () => {
+          this.router.navigate([ '' ]);
+          callbacks.successfulLogin();
+        },
+        fail: () => {
+          console.error('Unable to log you in. Please try again.')
+        }
+      }
+      )
   }
 
 }

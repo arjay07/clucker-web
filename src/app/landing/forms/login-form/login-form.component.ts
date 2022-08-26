@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LandingFormService} from '../../services/landing-form.service';
+import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -8,9 +10,10 @@ import {LandingFormService} from '../../services/landing-form.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  loginError? = '';
   password = '';
 
-  constructor(public landingFormService: LandingFormService) {
+  constructor(public landingFormService: LandingFormService, private auth: AuthService, private router: Router) {
     this.landingFormService.checkRoute();
   }
 
@@ -21,7 +24,17 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     if (this.landingFormService.username && this.password) {
-
+      this.auth.login({
+        username: this.landingFormService.username,
+        password: this.password
+      }, {
+        success: () => {
+          this.router.navigate(['', 'my-feed']);
+        },
+        fail: (errorMessage) => {
+          this.loginError = errorMessage;
+        }
+      });
     }
   }
 
