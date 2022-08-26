@@ -10,6 +10,7 @@ import { LoginComponent } from './screens/login/login.component';
 import { NotFoundComponent } from './screens/not-found/not-found.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppIconsModule} from '../app-icons.module';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 
 
 
@@ -21,7 +22,8 @@ import {AppIconsModule} from '../app-icons.module';
     NotificationsScreenComponent,
     SearchScreenComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LogoutButtonComponent
   ],
   imports: [
     CommonModule,
