@@ -6,15 +6,15 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {AuthService} from '@services/auth.service';
+import {JwtService} from '@services/jwt.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private auth: AuthService) {}
+  constructor(private jwt: JwtService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = this.auth.authToken;
+    const token = this.jwt.getJwtFromLocalStorage();
 
     if (token) {
       request.headers.set('Authorization', token);
