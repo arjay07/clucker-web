@@ -6,6 +6,8 @@ import { MyFeedScreenComponent } from './screens/my-feed-screen/my-feed-screen.c
 import { DiscoverScreenComponent } from './screens/discover-screen/discover-screen.component';
 import { NotificationsScreenComponent } from './screens/notifications-screen/notifications-screen.component';
 import { SearchScreenComponent } from './screens/search-screen/search-screen.component';
+import { LoginComponent } from './screens/login/login.component';
+import { NotFoundComponent } from './screens/not-found/not-found.component';
 
 
 
@@ -15,7 +17,9 @@ import { SearchScreenComponent } from './screens/search-screen/search-screen.com
     MyFeedScreenComponent,
     DiscoverScreenComponent,
     NotificationsScreenComponent,
-    SearchScreenComponent
+    SearchScreenComponent,
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,

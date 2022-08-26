@@ -6,6 +6,7 @@ import {MainComponent} from './clucker/main/main.component';
 import {SignUpFormComponent} from './landing/forms/sign-up-form/sign-up-form.component';
 import {LoginFormComponent} from './landing/forms/login-form/login-form.component';
 import {MyFeedScreenComponent} from './clucker/screens/my-feed-screen/my-feed-screen.component';
+import {NotFoundComponent} from './clucker/screens/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
         component: LoginFormComponent
       }
     ]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
