@@ -18,15 +18,15 @@ export class UsernameFormComponent implements OnInit {
 
   sendUsername() {
     this.checking = true;
-    const username = this.landingFormService.landingForm.username;
+    const username = this.landingFormService.username;
 
     this.landingFormService.checkUsernameAvailability(username)
       .subscribe({
         next: available => {
           if (!available) {
-            this.router.navigateByUrl('/login');
+            this.router.navigate(['get-started', 'login']);
           } else {
-            this.router.navigateByUrl('/sign-up');
+            this.router.navigate(['get-started', 'sign-up']);
           }
         },
         complete: () => {

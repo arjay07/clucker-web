@@ -3,7 +3,7 @@ import {LoginCredentials} from '../../interfaces/login-credentials';
 import {SignUpData} from '../../interfaces/sign-up-data';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {catchError, map, of, throwError} from 'rxjs';
+import {catchError, map, Observable, of, throwError} from 'rxjs';
 import {Router} from '@angular/router';
 
 @Injectable({
@@ -11,12 +11,7 @@ import {Router} from '@angular/router';
 })
 export class LandingFormService {
 
-  landingForm = {
-    username: 'arjay07',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  }
+  username = '';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -41,17 +36,33 @@ export class LandingFormService {
   }
 
   checkRoute() {
-    if (!this.landingForm.username)
+    if (!this.username)
       this.routeBackToUsernameForm();
   }
 
   routeBackToUsernameForm() {
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
   }
 
-  submitForm(typeOfForm: 'login' | 'signup', formData: LoginCredentials | SignUpData) {
+  submitForm(typeOfForm: 'login' | 'signup', formData: LoginCredentials | SignUpData): Observable<string | Object | null> {
+    const { api } = environment;
+    if (typeOfForm === 'login') {
+      return this.http.post(`${api}/login`, formData, {
+        observe: 'response'
+      }).pipe(
+        map(res => {
+          if (res.ok)
+            return res.headers.get('Authorization');
+          return null;
+        })
+      );
+    } else {
+      const { api } = environment;
+      return this.http.post<Object>(`${api}/users`, formData);
+    }
+  }
 
-
+  loginAndRedirectToApp(username: string, password: string) {
 
   }
 

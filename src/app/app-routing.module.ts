@@ -1,11 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {LandingModule} from './landing/landing.module';
+import {LandingScreenComponent} from './landing/screens/landing-screen/landing-screen.component';
+import {UsernameFormComponent} from './landing/forms/username-form/username-form.component';
+import {MainComponent} from './clucker/main/main.component';
+import {SignUpFormComponent} from './landing/forms/sign-up-form/sign-up-form.component';
+import {LoginFormComponent} from './landing/forms/login-form/login-form.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./landing/landing.module').then(() => LandingModule)
+    component: MainComponent
+  },
+  {
+    path: 'get-started',
+    component: LandingScreenComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: UsernameFormComponent
+      },
+      {
+        path: 'sign-up',
+        component: SignUpFormComponent
+      },
+      {
+        path: 'login',
+        component: LoginFormComponent
+      }
+    ]
   }
 ];
 

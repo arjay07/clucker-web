@@ -1,26 +1,48 @@
-<form (ngSubmit)="signUp()">
+<form [formGroup]="signUpFormGroup" (ngSubmit)="signUp()">
   <div class="text-xl my-8 text-center">
-    Welcome to <span class="font-bold">Clucker</span>, <br/> <span class="font-bold text-primary">{{landingFormService.landingForm.username}}</span>!
+    Welcome to <span class="font-bold">Clucker</span>, <br/> <span class="font-bold text-primary">{{landingFormService.username}}</span>!
   </div>
   <div class="my-2">
     <input autofocus type="email"
-           [(ngModel)]="landingFormService.landingForm.email"
-           name="email"
+           formControlName="email"
            placeholder="Email"
            class="form-control-round my-2"/>
+    <div *ngIf="signUpFormGroup.controls.email.errors && signUpFormGroup.controls.email.touched" class="mx-2 form-error">
+      <p *ngIf="signUpFormGroup.controls.email.errors['required']">Email is required. Please enter an email.</p>
+      <p *ngIf="signUpFormGroup.controls.email.errors['email']">Email is invalid. Please enter a valid email.</p>
+    </div>
     <input type="password"
-           [(ngModel)]="landingFormService"
            name="password"
+           formControlName="password"
            placeholder="Password"
            class="form-control-round my-2"/>
+    <div *ngIf="signUpFormGroup.controls.password.errors && signUpFormGroup.controls.password.touched" class="mx-2 form-error">
+      <p *ngIf="signUpFormGroup.controls.password.errors['required']">Password is required. Please enter a password.</p>
+      <p *ngIf="signUpFormGroup.controls.password.errors['minlength']">Password must be at least 8 characters.</p>
+      <div *ngIf="signUpFormGroup.controls.password.errors['pattern']">
+        Password must contain:
+        <ul class="list-disc ml-5">
+          <li>At least 1 lowercase character.</li>
+          <li>At least 2 uppercase character.</li>
+          <li>At least 1 number.</li>
+          <li>At least 1 symbol. (@#$%^&+=_!./?*).</li>
+        </ul>
+      </div>
+    </div>
     <input type="password"
-           [(ngModel)]="landingFormService.landingForm.confirmPassword"
-           name="password"
+           formControlName="confirmPassword"
            placeholder="Confirm Password"
            class="form-control-round my-2"/>
+    <div *ngIf="signUpFormGroup.controls.confirmPassword.errors && signUpFormGroup.controls.confirmPassword.touched" class="mx-2 form-error">
+      <p *ngIf="signUpFormGroup.controls.confirmPassword.errors['required']">Please re-enter your password.</p>
+      <p *ngIf="signUpFormGroup.controls.confirmPassword.errors['doesNotMatch']">Passwords do not match.</p>
+    </div>
 
-    <button type="submit" class="rounded-full p-3 py-1 text-white bg-primary w-full mt-8 mb-3 active:scale-95 highlight-none transition-transform">
-      Login
-    </button>
+    <div class="mt-8 mb-3">
+      <div *ngIf="submitErrorMessage" class="my-2 form-error text-center">{{submitErrorMessage}}</div>
+      <button [disabled]="signUpFormGroup.invalid" type="submit" class="disabled:opacity-60 rounded-full p-3 py-1 text-white bg-primary w-full active:scale-95 highlight-none transition-transform">
+        Login
+      </button>
+    </div>
   </div>
 </form>

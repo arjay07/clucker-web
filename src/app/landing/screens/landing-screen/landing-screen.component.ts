@@ -13,7 +13,7 @@ export class LandingScreenComponent implements OnInit {
   constructor(private router: Router) {
     this.router.events.subscribe({
       next: event => {
-        this.canGoBack = (this.router.url !== '/');
+        this.canGoBack = (this.router.url !== '/get-started');
       }
     })
   }

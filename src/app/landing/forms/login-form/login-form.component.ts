@@ -8,7 +8,6 @@ import {LandingFormService} from '../../services/landing-form.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  username = '';
   password = '';
 
   constructor(public landingFormService: LandingFormService) {
@@ -21,10 +20,9 @@ export class LoginFormComponent implements OnInit {
 
 
   login() {
-    console.log({
-      username: this.username,
-      password: this.password
-    });
+    if (this.landingFormService.username && this.password) {
+
+    }
   }
 
 }
