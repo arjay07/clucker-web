@@ -13,6 +13,7 @@ import {AppIconsModule} from '../app-icons.module';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import {NavBarComponent} from '@clucker/components/nav-bar/nav-bar.component';
 import {NavBarItemComponent} from '@clucker/components/nav-bar-item/nav-bar-item.component';
+import { TitleBarComponent } from './components/title-bar/title-bar.component';
 
 
 
@@ -27,7 +28,8 @@ import {NavBarItemComponent} from '@clucker/components/nav-bar-item/nav-bar-item
     NotFoundComponent,
     LogoutButtonComponent,
     NavBarComponent,
-    NavBarItemComponent
+    NavBarItemComponent,
+    TitleBarComponent
   ],
   imports: [
     CommonModule,
