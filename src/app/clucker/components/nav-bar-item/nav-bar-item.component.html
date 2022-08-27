@@ -1,3 +1,6 @@
-<a class="group p-5 active:text-primary inline-block w-16 h-16 transition-all group-active m-0 duration-150" [routerLink]="navRoute">
+<a class="group p-5 active:text-primary transition-colors
+          inline-block w-16 h-16 transition-all border-b-4
+          group-active m-0 duration-150 {{ activeRoute ? 'border-b-primary' : 'border-b-transparent' }}"
+   [routerLink]="navRoute">
   <fa-icon [icon]="itemIcon" size="lg" class="inline-block group-active:scale-90 duration-75 transition-transform"></fa-icon>
 </a>

@@ -1,4 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ActivatedRoute, ActivationEnd, NavigationEnd, Router, RoutesRecognized} from '@angular/router';
+import {filter} from 'rxjs';
+import {ActiveNavRoute} from '../../../types/ActiveNavRoute';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,6 +9,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./nav-bar.component.sass']
 })
 export class NavBarComponent implements OnInit {
+
+  activeNavRoute?: ActiveNavRoute;
 
   @Input()
   navRoutes: {
@@ -23,7 +28,16 @@ export class NavBarComponent implements OnInit {
   @Output()
   activatePlus = new EventEmitter();
 
-  constructor() { }
+  constructor(private router: Router) {
+    this.router.events
+      .subscribe((e) => {
+        console.log(e);
+        if (e instanceof ActivationEnd) {
+          if (e.snapshot.data['activeNavRoute'])
+            this.activeNavRoute = e.snapshot.data['activeNavRoute'];
+        }
+      });
+  }
 
   ngOnInit(): void {
   }

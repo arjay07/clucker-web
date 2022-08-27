@@ -22,19 +22,31 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: MyFeedScreenComponent
+        component: MyFeedScreenComponent,
+        data: {
+          activeNavRoute: 'home',
+        }
       },
       {
         path: 'discover',
-        component: DiscoverScreenComponent
+        component: DiscoverScreenComponent,
+        data: {
+          activeNavRoute: 'discover',
+        }
       },
       {
         path: 'notifications',
-        component: NotificationsScreenComponent
+        component: NotificationsScreenComponent,
+        data: {
+          activeNavRoute: 'notifications',
+        }
       },
       {
         path: 'search',
-        component: SearchScreenComponent
+        component: SearchScreenComponent,
+        data: {
+          activeNavRoute: 'search',
+        }
       }
     ]
   },

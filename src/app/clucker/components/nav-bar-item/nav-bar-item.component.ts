@@ -9,6 +9,9 @@ import {IconProp} from '@fortawesome/fontawesome-svg-core';
 export class NavBarItemComponent implements OnInit {
 
   @Input()
+  activeRoute = false;
+
+  @Input()
   navRoute = '';
 
   @Input()

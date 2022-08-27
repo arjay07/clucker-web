@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
 
   navRoutes = {
-    home: '',
-    discover: 'discover',
-    notifications: 'notifications',
-    search: 'search'
+    home: '/',
+    discover: '/discover',
+    notifications: '/notifications',
+    search: '/search'
   };
 
   constructor() { }
