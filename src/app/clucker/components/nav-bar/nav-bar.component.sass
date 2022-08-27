@@ -1,0 +1,56 @@
+.navbar
+  box-shadow: 0 2px 4px lightgray
+
+.navbar-notch
+  border-radius: 100%
+  position: absolute
+  left: 50%
+  transform: translateX(-50%) translateY(-42px)
+  width: 84px
+  height: 84px
+  box-shadow: inset 0 -2px 2px -1px lightgray
+  @apply bg-plain
+
+.navbar-notch
+  ::before
+    content: ''
+    width: 20px
+    height: 20px
+    display: block
+    position: absolute
+    top: 28px
+    left: -5px
+    transform: rotate(40deg)
+    @apply bg-plain
+  ::after
+    content: ''
+    width: 20px
+    height: 20px
+    display: block
+    position: absolute
+    top: 28px
+    right: -5px
+    transform: rotate(-40deg)
+    @apply bg-plain
+
+.notch-l-corner
+  width: 40px
+  height: 10px
+  background-color: white
+  position: absolute
+  left: 50%
+  border-radius: 10px
+  transform: translateX(-82px) translateY(-0px)
+  box-shadow: 2px -2px 2px -3px lightgray
+
+
+.notch-r-corner
+  width: 40px
+  height: 10px
+  background-color: white
+  position: absolute
+  right: 50%
+  border-radius: 10px
+  transform: translateX(82px) translateY(-0px)
+  box-shadow: -2px -2px 2px -3px lightgray
+

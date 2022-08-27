@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {LandingModule} from './landing/landing.module';
-import {CluckerModule} from './clucker/clucker.module';
+import {LandingModule} from '@landing/landing.module';
+import {CluckerModule} from '@clucker/clucker.module';
 
 @NgModule({
   declarations: [

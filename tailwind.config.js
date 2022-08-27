@@ -13,7 +13,8 @@ module.exports = {
           light: "#f37d7d",
           dark: "#ae4040"
         },
-        danger: Colors.red['500']
+        danger: Colors.red['500'],
+        plain: "#fafafa"
       }
     }
   },

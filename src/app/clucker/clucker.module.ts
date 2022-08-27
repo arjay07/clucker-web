@@ -11,6 +11,9 @@ import { NotFoundComponent } from './screens/not-found/not-found.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppIconsModule} from '../app-icons.module';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import {NavBarComponent} from '@clucker/components/nav-bar/nav-bar.component';
+import {NavBarItemComponent} from '@clucker/components/nav-bar-item/nav-bar-item.component';
+import { TitleBarComponent } from './components/title-bar/title-bar.component';
 
 
 
@@ -23,7 +26,10 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     SearchScreenComponent,
     LoginComponent,
     NotFoundComponent,
-    LogoutButtonComponent
+    LogoutButtonComponent,
+    NavBarComponent,
+    NavBarItemComponent,
+    TitleBarComponent
   ],
   imports: [
     CommonModule,

@@ -2,12 +2,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
-import {faChevronLeft, faChevronRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {
+  faBell,
+  faChevronLeft,
+  faChevronRight,
+  faCompass,
+  faHome,
+  faPlus, faSearch,
+  faSpinner
+} from '@fortawesome/free-solid-svg-icons';
 
 const icons: IconDefinition[] = [
   faChevronRight,
   faChevronLeft,
-  faSpinner
+  faSpinner,
+  faPlus,
+  faHome,
+  faCompass,
+  faBell,
+  faSearch
 ];
 
 @NgModule({
