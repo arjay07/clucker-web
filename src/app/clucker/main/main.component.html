@@ -1,3 +1,4 @@
-<p>main works!</p>
-<app-logout-button></app-logout-button>
 <router-outlet></router-outlet>
+<div class="fixed bottom-0">
+  <app-nav-bar [navRoutes]="navRoutes" (activatePlus)="openCreateNewCluck()"></app-nav-bar>
+</div>

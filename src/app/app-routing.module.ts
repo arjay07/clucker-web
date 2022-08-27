@@ -10,6 +10,9 @@ import {NotFoundComponent} from '@clucker/screens/not-found/not-found.component'
 import {LoginComponent} from '@clucker/screens/login/login.component';
 import {AuthGuard} from '@guards/auth.guard';
 import {AlreadyLoggedInGuard} from '@guards/already-logged-in.guard';
+import {DiscoverScreenComponent} from '@clucker/screens/discover-screen/discover-screen.component';
+import {NotificationsScreenComponent} from '@clucker/screens/notifications-screen/notifications-screen.component';
+import {SearchScreenComponent} from '@clucker/screens/search-screen/search-screen.component';
 
 const routes: Routes = [
   {
@@ -20,6 +23,18 @@ const routes: Routes = [
       {
         path: '',
         component: MyFeedScreenComponent
+      },
+      {
+        path: 'discover',
+        component: DiscoverScreenComponent
+      },
+      {
+        path: 'notifications',
+        component: NotificationsScreenComponent
+      },
+      {
+        path: 'search',
+        component: SearchScreenComponent
       }
     ]
   },

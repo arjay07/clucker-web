@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  navRoutes = {
+    home: '',
+    discover: 'discover',
+    notifications: 'notifications',
+    search: 'search'
+  };
+
   constructor() { }
 
   ngOnInit(): void {
+    document.body.classList.add('bg-plain');
+  }
+
+  ngOnDestroy(): void {
+    document.body.classList.remove('bg-plain');
+  }
+
+  openCreateNewCluck() {
+    console.log('Hello, world!');
   }
 
 }
