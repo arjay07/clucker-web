@@ -25,6 +25,7 @@ const routes: Routes = [
         component: MyFeedScreenComponent,
         data: {
           activeNavRoute: 'home',
+          title: 'My Feed'
         }
       },
       {
@@ -32,6 +33,7 @@ const routes: Routes = [
         component: DiscoverScreenComponent,
         data: {
           activeNavRoute: 'discover',
+          title: 'Discover'
         }
       },
       {
@@ -39,6 +41,7 @@ const routes: Routes = [
         component: NotificationsScreenComponent,
         data: {
           activeNavRoute: 'notifications',
+          title: 'Notifications'
         }
       },
       {
@@ -46,6 +49,7 @@ const routes: Routes = [
         component: SearchScreenComponent,
         data: {
           activeNavRoute: 'search',
+          title: 'Search'
         }
       }
     ]

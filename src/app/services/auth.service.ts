@@ -37,7 +37,7 @@ export class AuthService {
       error: err => {
         if (callbacks && callbacks.fail) {
           if (err instanceof HttpErrorResponse) {
-            if (err.status === 403) {
+            if (err.status === 403 || err.status === 400) {
               callbacks.fail('Incorrect username or password.');
               return;
             }

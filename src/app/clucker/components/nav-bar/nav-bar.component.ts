@@ -31,7 +31,6 @@ export class NavBarComponent implements OnInit {
   constructor(private router: Router) {
     this.router.events
       .subscribe((e) => {
-        console.log(e);
         if (e instanceof ActivationEnd) {
           if (e.snapshot.data['activeNavRoute'])
             this.activeNavRoute = e.snapshot.data['activeNavRoute'];

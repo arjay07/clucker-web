@@ -12,6 +12,7 @@ export class LoginFormComponent implements OnInit {
 
   loginError? = '';
   password = '';
+  loggingIn = false;
 
   constructor(public landingFormService: LandingFormService, private auth: AuthService, private router: Router) {
     this.landingFormService.checkRoute();
@@ -20,9 +21,9 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
   login() {
+    this.loginError = '';
+    this.loggingIn = true;
     if (this.landingFormService.username && this.password) {
       this.auth.login({
         username: this.landingFormService.username,
@@ -30,9 +31,11 @@ export class LoginFormComponent implements OnInit {
       }, {
         success: () => {
           this.router.navigate(['']);
+          this.loggingIn = false;
         },
         fail: (errorMessage) => {
           this.loginError = errorMessage;
+          this.loggingIn = false;
         }
       });
     }

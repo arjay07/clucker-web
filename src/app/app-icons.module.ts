@@ -9,7 +9,7 @@ import {
   faCompass,
   faHome,
   faPlus, faSearch,
-  faSpinner
+  faSpinner, faUserCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 const icons: IconDefinition[] = [
@@ -20,7 +20,8 @@ const icons: IconDefinition[] = [
   faHome,
   faCompass,
   faBell,
-  faSearch
+  faSearch,
+  faUserCircle
 ];
 
 @NgModule({

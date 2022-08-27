@@ -13,8 +13,15 @@
       <a routerLink="forgot-password" class="text-primary text-xs">Forgot Password?</a>
     </div>
 
-    <button type="submit" class="btn-primary mt-8 mb-3">
-      Login
-    </button>
+    <div class="mt-8 mb-3">
+      <div *ngIf="loginError" class="text-center text-xs text-danger mb-2 animate__animated animate__headShake animate__fast">
+        {{loginError}}
+      </div>
+      <button type="submit" class="btn-primary">
+        Login <fa-icon *ngIf="loggingIn" icon="spinner" [spin]="true"></fa-icon>
+      </button>
+    </div>
+
+
   </div>
 </form>
