@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Cluck} from '../../../models/cluck';
 
 @Component({
   selector: 'app-cluck-view',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cluck-view.component.sass']
 })
 export class CluckViewComponent implements OnInit {
+
+  @Input()
+  cluck!: Cluck;
 
   constructor() { }
 

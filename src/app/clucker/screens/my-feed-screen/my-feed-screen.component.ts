@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Cluck} from '../../../models/cluck';
 
 @Component({
   selector: 'app-my-feed-screen',
@@ -6,6 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-feed-screen.component.sass']
 })
 export class MyFeedScreenComponent implements OnInit {
+
+  testCluck: Cluck = {
+    author: 'testboy',
+    authorId: 1,
+    body: 'This is a cluck.',
+    commentCount: 0,
+    commented: false,
+    eggRating: 0,
+    id: '',
+    lastModified: new Date(),
+    liked: 0,
+    posted: new Date()
+
+  };
 
   constructor() { }
 

@@ -1,19 +1,15 @@
-<div class="navbar-notch"></div>
-<div class="notch-l-corner"></div>
-<div class="notch-r-corner"></div>
-<div class="navbar m-0 w-screen flex flex-row justify-center align-middle bg-white">
+<div class="m-0 w-screen flex flex-row justify-center align-middle bg-white drop-shadow shadow">
   <div class="mx-auto flex flex-row justify-center align-middle">
     <app-nav-bar-item [activeRoute]="activeNavRoute === 'home'" [navRoute]="navRoutes.home" itemIcon="home"></app-nav-bar-item>
     <app-nav-bar-item [activeRoute]="activeNavRoute === 'discover'" [navRoute]="navRoutes.discover" itemIcon="compass"></app-nav-bar-item>
-    <div class="mx-12"></div>
+    <button class="bg-primary active:scale-90 mx-5
+               active:bg-blend-darken text-white my-auto
+               rounded-full w-12 h-12 shadow shadow-gray-300
+               active:shadow-none active:bg-primary-darker transition-all"
+            (click)="activatedPlus()">
+      <fa-icon icon="plus"></fa-icon>
+    </button>
     <app-nav-bar-item [activeRoute]="activeNavRoute === 'notifications'" [navRoute]="navRoutes.notifications" itemIcon="bell"></app-nav-bar-item>
     <app-nav-bar-item [activeRoute]="activeNavRoute === 'search'" [navRoute]="navRoutes.search" itemIcon="search"></app-nav-bar-item>
   </div>
-  <button class="bg-primary active:scale-90 mx-auto absolute bottom-8
-               active:bg-blend-darken text-white
-               p-5 rounded-full w-16 h-16 shadow shadow-gray-300
-               active:shadow-none active:bg-primary-darker transition-all"
-          (click)="activatedPlus()">
-    <fa-icon icon="plus" size="lg"></fa-icon>
-  </button>
 </div>
