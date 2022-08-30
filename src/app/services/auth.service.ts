@@ -30,7 +30,6 @@ export class AuthService {
       observe: 'response'
     }).subscribe({
       next: res => {
-        console.log(res);
         const jwtHeader = res.headers.get('Authorization');
         localStorage.setItem(this.tokenKey, jwtHeader ? jwtHeader : '');
       },
