@@ -14,6 +14,7 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
 import {NavBarComponent} from '@clucker/components/nav-bar/nav-bar.component';
 import {NavBarItemComponent} from '@clucker/components/nav-bar-item/nav-bar-item.component';
 import { TitleBarComponent } from './components/title-bar/title-bar.component';
+import { CluckViewComponent } from './components/cluck-view/cluck-view.component';
 
 
 
@@ -29,7 +30,8 @@ import { TitleBarComponent } from './components/title-bar/title-bar.component';
     LogoutButtonComponent,
     NavBarComponent,
     NavBarItemComponent,
-    TitleBarComponent
+    TitleBarComponent,
+    CluckViewComponent
   ],
   imports: [
     CommonModule,
