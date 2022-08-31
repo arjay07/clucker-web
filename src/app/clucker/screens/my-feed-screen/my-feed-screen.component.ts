@@ -19,7 +19,6 @@ export class MyFeedScreenComponent implements OnInit {
     lastModified: new Date(),
     liked: 0,
     posted: new Date()
-
   };
 
   constructor() { }
