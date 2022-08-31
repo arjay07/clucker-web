@@ -33,7 +33,6 @@ const icons: IconDefinition[] = [
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
     FontAwesomeModule
   ],
   exports: [
