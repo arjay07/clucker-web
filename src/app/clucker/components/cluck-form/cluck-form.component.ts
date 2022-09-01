@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {PostCluck} from '../../../models/post-cluck';
 
 @Component({
   selector: 'app-cluck-form',
@@ -12,8 +13,13 @@ export class CluckFormComponent implements OnInit {
 
   closing = false;
 
+  body = '';
+
   @Output()
   showChange = new EventEmitter<boolean>();
+
+  @Output()
+  onPostCluck = new EventEmitter<PostCluck>();
 
   constructor() { }
 
@@ -22,7 +28,7 @@ export class CluckFormComponent implements OnInit {
 
   sendCluck(event: SubmitEvent) {
     event.preventDefault();
-    console.log('Sending cluck...');
+    this.onPostCluck.emit({ body: this.body });
   }
 
   closeForm() {
