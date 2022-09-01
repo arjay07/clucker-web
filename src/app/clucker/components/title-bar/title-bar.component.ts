@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivationEnd, Router} from '@angular/router';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-title-bar',
@@ -9,6 +10,9 @@ import {ActivationEnd, Router} from '@angular/router';
 export class TitleBarComponent implements OnInit {
 
   appTitle = 'Title';
+
+  @Input()
+  user?: User;
 
   constructor(private router: Router) {
     this.router.events

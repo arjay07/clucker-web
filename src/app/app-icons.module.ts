@@ -5,7 +5,7 @@ import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {
   faBell,
   faChevronLeft,
-  faChevronRight, faComment, faCommenting,
+  faChevronRight, faCircle, faComment, faCommenting,
   faCompass, faEgg,
   faHome, faMinus,
   faPlus, faSearch, faShare, faShareNodes,
@@ -27,7 +27,8 @@ const icons: IconDefinition[] = [
   faShare,
   faShareNodes,
   faEgg,
-  faMinus
+  faMinus,
+  faCircle
 ];
 
 @NgModule({

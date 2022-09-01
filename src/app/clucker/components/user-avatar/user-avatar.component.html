@@ -1,1 +1,14 @@
-<fa-icon icon="user-circle" class="p-2" size="2x"></fa-icon>
+<div [ngSwitch]="mode">
+  <div *ngSwitchCase="'default'">
+    <fa-layers *ngIf="user && !loading; else spinner" size="2x" [fixedWidth]="true">
+      <fa-icon icon="circle" [styles]="userStyle"></fa-icon>
+      <fa-icon icon="user-circle" [styles]="circleStyle"></fa-icon>
+    </fa-layers>
+  </div>
+  <div *ngSwitchCase="'image'">
+    Image
+  </div>
+</div>
+<ng-template #spinner>
+  <fa-icon class="p-2 text-primary opacity-50" [spin]="true" icon="spinner"></fa-icon>
+</ng-template>

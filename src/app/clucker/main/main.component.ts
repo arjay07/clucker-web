@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../../models/user';
+import {AuthService} from '@services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -14,10 +16,15 @@ export class MainComponent implements OnInit {
     search: '/search'
   };
 
-  constructor() { }
+  currentUser?: User;
+
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
     document.body.classList.add('bg-plain');
+    this.auth.currentUser.subscribe({
+      next: user => this.currentUser = user
+    });
   }
 
   ngOnDestroy(): void {
