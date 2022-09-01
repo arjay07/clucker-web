@@ -18,6 +18,7 @@ import { CluckViewComponent } from './components/cluck-view/cluck-view.component
 import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
 import { AbbreviateCountPipe } from './pipes/abbreviate-count.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { CluckFormComponent } from './components/cluck-form/cluck-form.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     CluckViewComponent,
     UserAvatarComponent,
     AbbreviateCountPipe,
-    TimeAgoPipe
+    TimeAgoPipe,
+    CluckFormComponent
   ],
   imports: [
     CommonModule,

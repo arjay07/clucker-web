@@ -1,0 +1,25 @@
+<div *ngIf="show" class="bg-opacity-40 bg-black w-screen min-h-screen absolute fixed top-0 left-0
+                        animate__animated {{ closing ? 'animate__fadeOut' : 'animate__fadeIn' }} animate__fastest"></div>
+<div *ngIf="show" class="fixed bottom-0 w-full">
+  <div class="bg-white w-[85%] max-w-[320px] mx-auto py-4 px-6 rounded-t-xl
+              drop-shadow animate__animated animate__fastest {{ closing ? 'animate__slideOutDown' : 'animate__slideInUp' }}">
+    <div class="flex justify-center w-full pb-5">
+      <h1 class="flex-grow text-center font-bold">New Cluck</h1>
+      <button type="button" (click)="closeForm()" class="absolute right-0 top-0 my-3 mr-7 active:scale-90 transition-all active:text-primary">
+        <fa-icon icon="times"></fa-icon>
+      </button>
+    </div>
+    <form (submit)="sendCluck($event)">
+      <div class="my-2">
+          <textarea name="cluckContent"
+                    rows="3"
+                    placeholder="What's up?" class="rounded-xl text resize-none border outline-none transition-all w-full p-3"></textarea>
+      </div>
+      <div class="my-2 text-center">
+        <button type="submit" class="btn-primary">
+          <span class="m-2">Cluck</span> <fa-icon icon="paper-plane-top"></fa-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {
   faBell,
   faChevronLeft,
-  faChevronRight, faCircle, faComment, faCommenting,
+  faChevronRight, faCircle, faCircleNotch, faComment, faCommenting,
   faCompass, faEgg,
-  faHome, faMinus,
+  faHome, faMinus, faPaperPlaneTop,
   faPlus, faSearch, faShare, faShareNodes,
-  faSpinner, faUserCircle
-} from '@fortawesome/free-solid-svg-icons';
+  faSpinner, faTimes, faUserCircle, faX
+} from '@fortawesome/pro-solid-svg-icons';
+import {faSpinnerThird} from '@fortawesome/pro-duotone-svg-icons';
 
 const icons: IconDefinition[] = [
   faChevronRight,
@@ -28,7 +28,12 @@ const icons: IconDefinition[] = [
   faShareNodes,
   faEgg,
   faMinus,
-  faCircle
+  faCircle,
+  faTimes,
+  faX,
+  faCircleNotch,
+  faSpinnerThird,
+  faPaperPlaneTop
 ];
 
 @NgModule({

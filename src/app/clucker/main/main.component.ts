@@ -18,6 +18,8 @@ export class MainComponent implements OnInit {
 
   currentUser?: User;
 
+  showNewCluckForm = false;
+
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
@@ -32,7 +34,7 @@ export class MainComponent implements OnInit {
   }
 
   openCreateNewCluck() {
-    console.log('Hello, world!');
+    this.showNewCluckForm = true;
   }
 
 }
