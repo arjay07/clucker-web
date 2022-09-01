@@ -10,10 +10,16 @@
       </button>
     </div>
     <form (submit)="sendCluck($event)">
-      <div class="my-2">
-          <textarea name="cluckContent"
-                    rows="3"
-                    placeholder="What's up?" class="rounded-xl text resize-none border outline-none transition-all w-full p-3"></textarea>
+      <div class="my-2 relative">
+        <textarea name="body"
+                  (keydown)="onKeyDown($event)"
+                  (paste)="onPaste($event)"
+                  [(ngModel)]="body"
+                  rows="3"
+                  placeholder="What's up?" class="rounded-xl text resize-none border outline-none transition-all w-full p-3 overflow-y-hidden"></textarea>
+        <div class="absolute bottom-0 right-0 p-3 font-bold text-primary opacity-60 {{cluckWords >= 6 ? 'animate__headShake' : ''}} animate__animated animate__fast">
+          {{cluckWords}}/6
+        </div>
       </div>
       <div class="my-2 text-center">
         <button type="submit" class="btn-primary">
