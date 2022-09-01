@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../models/user';
+import {User} from '@models/user';
 import {AuthService} from '@services/auth.service';
+import {CluckService} from '@clucker/services/cluck.service';
+import {PostCluck} from '@models/post-cluck';
+import {Page} from '@models/page';
+import {Cluck} from '@models/cluck';
+import {MyFeedScreenComponent} from '@clucker/screens/my-feed-screen/my-feed-screen.component';
+import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
 
 @Component({
   selector: 'app-main',
@@ -18,7 +24,9 @@ export class MainComponent implements OnInit {
 
   currentUser?: User;
 
-  constructor(private auth: AuthService) { }
+  showNewCluckForm = false;
+
+  constructor(private auth: AuthService, private cluck: CluckService, private cluckLoader: CluckLoaderService) { }
 
   ngOnInit(): void {
     document.body.classList.add('bg-plain');
@@ -32,7 +40,15 @@ export class MainComponent implements OnInit {
   }
 
   openCreateNewCluck() {
-    console.log('Hello, world!');
+    this.showNewCluckForm = true;
+  }
+
+  postCluck(body: PostCluck) {
+    this.cluck.postCluck(body).subscribe({
+      next: (data) => {
+        this.cluckLoader.addCluckToFeed(data);
+      }
+    })
   }
 
 }

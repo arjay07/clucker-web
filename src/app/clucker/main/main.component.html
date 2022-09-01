@@ -7,3 +7,4 @@
 <div class="fixed bottom-0">
   <app-nav-bar [navRoutes]="navRoutes" (activatePlus)="openCreateNewCluck()"></app-nav-bar>
 </div>
+<app-cluck-form [(show)]="showNewCluckForm" (onPostCluck)="postCluck($event)"></app-cluck-form>

@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {User} from '../../../models/user';
+import {User} from '@models/user';
 
 @Component({
   selector: 'app-user-avatar',
@@ -27,7 +27,6 @@ export class UserAvatarComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes && changes['user'] && this.user) {
       this.loading = false;
-      console.log(this.user);
       this.userStyle = {
         color: `hsl(${this.user.avatarHue}, 50%, 88%)`
       }

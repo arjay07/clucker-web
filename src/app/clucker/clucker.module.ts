@@ -8,7 +8,7 @@ import { NotificationsScreenComponent } from './screens/notifications-screen/not
 import { SearchScreenComponent } from './screens/search-screen/search-screen.component';
 import { LoginComponent } from './screens/login/login.component';
 import { NotFoundComponent } from './screens/not-found/not-found.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppIconsModule} from '../app-icons.module';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import {NavBarComponent} from '@clucker/components/nav-bar/nav-bar.component';
@@ -18,6 +18,7 @@ import { CluckViewComponent } from './components/cluck-view/cluck-view.component
 import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
 import { AbbreviateCountPipe } from './pipes/abbreviate-count.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { CluckFormComponent } from './components/cluck-form/cluck-form.component';
 
 
 @NgModule({
@@ -36,13 +37,15 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     CluckViewComponent,
     UserAvatarComponent,
     AbbreviateCountPipe,
-    TimeAgoPipe
+    TimeAgoPipe,
+    CluckFormComponent
   ],
-  imports: [
-    CommonModule,
-    CluckerRoutingModule,
-    ReactiveFormsModule,
-    AppIconsModule
-  ]
+    imports: [
+        CommonModule,
+        CluckerRoutingModule,
+        ReactiveFormsModule,
+        AppIconsModule,
+        FormsModule
+    ]
 })
 export class CluckerModule { }
