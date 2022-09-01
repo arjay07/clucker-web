@@ -5,9 +5,8 @@ import { UsernameFormComponent } from './forms/username-form/username-form.compo
 import { LoginFormComponent } from './forms/login-form/login-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppIconsModule} from '../app-icons.module';
-import {HttpClientModule} from '@angular/common/http';
 import { SignUpFormComponent } from './forms/sign-up-form/sign-up-form.component';
-import {RouterModule} from '@angular/router';
+import {AppRoutingModule} from '../app-routing.module';
 
 
 
@@ -25,9 +24,8 @@ import {RouterModule} from '@angular/router';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     AppIconsModule,
-    RouterModule
+    AppRoutingModule
   ]
 })
 export class LandingModule { }

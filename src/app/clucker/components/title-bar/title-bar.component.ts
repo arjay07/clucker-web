@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivationEnd, Router} from '@angular/router';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-title-bar',
@@ -7,7 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TitleBarComponent implements OnInit {
 
-  constructor() { }
+  appTitle = 'Title';
+
+  @Input()
+  user?: User;
+
+  constructor(private router: Router) {
+    this.router.events
+      .subscribe((e) => {
+        if (e instanceof ActivationEnd) {
+          if (e.snapshot.data['title'])
+            this.appTitle = e.snapshot.data['title'];
+        }
+      });
+  }
 
   ngOnInit(): void {
   }

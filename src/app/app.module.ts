@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {LandingModule} from '@landing/landing.module';
 import {CluckerModule} from '@clucker/clucker.module';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from '@models/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -13,12 +15,19 @@ import {CluckerModule} from '@clucker/clucker.module';
   ],
   imports: [
       BrowserModule,
+      HttpClientModule,
       AppRoutingModule,
       FontAwesomeModule,
       LandingModule,
       CluckerModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: AuthInterceptor
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
