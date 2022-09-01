@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivationEnd, Router} from '@angular/router';
-import {User} from '../../../models/user';
+import {User} from '@models/user';
 
 @Component({
   selector: 'app-title-bar',

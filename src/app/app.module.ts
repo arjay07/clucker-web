@@ -7,7 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {LandingModule} from '@landing/landing.module';
 import {CluckerModule} from '@clucker/clucker.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AuthInterceptor} from '@models/auth.interceptor';
+import {AuthInterceptor} from '@interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [

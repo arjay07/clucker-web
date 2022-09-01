@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {PostCluck} from '../../../models/post-cluck';
+import {PostCluck} from '@models/post-cluck';
 
 @Component({
   selector: 'app-cluck-form',
