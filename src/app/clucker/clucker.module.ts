@@ -19,6 +19,8 @@ import { UserAvatarComponent } from './components/user-avatar/user-avatar.compon
 import { AbbreviateCountPipe } from './pipes/abbreviate-count.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { CluckFormComponent } from './components/cluck-form/cluck-form.component';
+import { CluckLoaderComponent } from './components/cluck-loader/cluck-loader.component';
+import {NgxPullToRefreshModule} from 'ngx-pull-to-refresh';
 
 
 @NgModule({
@@ -38,14 +40,16 @@ import { CluckFormComponent } from './components/cluck-form/cluck-form.component
     UserAvatarComponent,
     AbbreviateCountPipe,
     TimeAgoPipe,
-    CluckFormComponent
+    CluckFormComponent,
+    CluckLoaderComponent
   ],
     imports: [
         CommonModule,
         CluckerRoutingModule,
         ReactiveFormsModule,
         AppIconsModule,
-        FormsModule
+        FormsModule,
+        NgxPullToRefreshModule
     ]
 })
 export class CluckerModule { }

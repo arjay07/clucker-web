@@ -14,14 +14,16 @@ export class CluckLoaderService {
 
   constructor(private cluck: CluckService) { }
 
-  loadFeedClucks() {
+  loadFeedClucks({success, complete}: { success?: (clucks: Page<Cluck>) => void, complete?: () => void}) {
     this.loading = true;
     this.cluck.getClucks().subscribe({
       next: clucks => {
         this.myFeedClucks = clucks;
+        if (success) success(clucks);
       },
       complete: () => {
         this.loading = false;
+        if (complete) complete();
       }
     });
   }

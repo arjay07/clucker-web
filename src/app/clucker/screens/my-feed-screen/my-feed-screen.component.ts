@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
 
 @Component({
   selector: 'app-my-feed-screen',
@@ -8,10 +7,9 @@ import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
 })
 export class MyFeedScreenComponent implements OnInit {
 
-  constructor(public cluckLoader: CluckLoaderService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.cluckLoader.loadFeedClucks();
   }
 
 }
