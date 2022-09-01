@@ -1,11 +1,12 @@
-<ngx-pull-to-refresh (refresh)="refresh($event)"
+<ngx-pull-to-refresh (refresh)="refreshClucks($event)"
+                     (loadMore)="loadMore()"
                      [spinnerSize]="30"
                      [targetElement]="targetElement"
                      [distanceForRefresh]="85"
                      spinnerColor="#ff5757"
                      [isEnable]="true">
-  <div *ngIf="!cluckLoader.loading && cluckLoader.myFeedClucks">
-    <app-cluck-view *ngFor="let cluck of cluckLoader.myFeedClucks.content" [cluck]="cluck"></app-cluck-view>
+  <div *ngIf="cluckLoader.myFeedClucks">
+    <app-cluck-view *ngFor="let cluck of cluckLoader.myFeedClucks; trackBy: trackByCluckId" [cluck]="cluck"></app-cluck-view>
   </div>
 </ngx-pull-to-refresh>
 

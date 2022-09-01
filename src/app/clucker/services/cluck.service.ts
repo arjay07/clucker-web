@@ -19,6 +19,10 @@ export class CluckService {
     return this.http.post<Cluck>(`${this.api}/clucks`, requestBody);
   }
 
+  getPersonalFeed(params: PageParams = { sort: ['posted,desc'] }): Observable<Page<Cluck>> {
+    return this.http.get<Page<Cluck>>(`${this.api}/feed/personal`, { params });
+  }
+
   getClucks(params: PageParams = { sort: [ 'posted,desc' ] }): Observable<Page<Cluck>> {
     return this.http.get<Page<Cluck>>(`${this.api}/clucks`, { params });
   }
