@@ -1,8 +1,8 @@
-<div class="fixed top-0">
-  <app-title-bar [user]="currentUser"></app-title-bar>
-</div>
-<div class="my-[70px] mx-auto container max-w-lg">
+<div id="routerContent" class="relative top-[73px] pb-[73px] mx-auto container max-w-lg">
   <router-outlet></router-outlet>
+</div>
+<div class="fixed left-0 top-0">
+  <app-title-bar [user]="currentUser"></app-title-bar>
 </div>
 <div class="fixed bottom-0">
   <app-nav-bar [navRoutes]="navRoutes" (activatePlus)="openCreateNewCluck()"></app-nav-bar>

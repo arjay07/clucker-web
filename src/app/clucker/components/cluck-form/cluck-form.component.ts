@@ -34,6 +34,8 @@ export class CluckFormComponent implements OnInit {
   sendCluck(event: SubmitEvent) {
     event.preventDefault();
     this.onPostCluck.emit({ body: this.body });
+    this.body = '';
+    this.closeForm();
   }
 
   closeForm() {

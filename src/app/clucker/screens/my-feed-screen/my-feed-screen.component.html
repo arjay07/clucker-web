@@ -1,9 +1,3 @@
-<div class="py-2" *ngIf="!cluckLoader.loading && cluckLoader.myFeedClucks; else spinner">
-  <app-cluck-view *ngFor="let cluck of cluckLoader.myFeedClucks.content" [cluck]="cluck"></app-cluck-view>
+<div class="py-2">
+  <app-cluck-loader mode="FEED"></app-cluck-loader>
 </div>
-
-<ng-template #spinner>
-  <div class="w-full py-4 text-center">
-    <fa-duotone-icon [icon]="['fad', 'spinner-third']" class="text-primary" size="2x" [spin]="cluckLoader.loading"></fa-duotone-icon>
-  </div>
-</ng-template>

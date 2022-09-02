@@ -28,6 +28,7 @@
     "animate.css": "^4.1.1",
     "javascript-time-ago": "^2.5.7",
     "jwt-decode": "^3.1.2",
+    "ngx-pull-to-refresh": "^13.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
