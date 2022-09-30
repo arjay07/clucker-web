@@ -35,7 +35,6 @@ export class CluckLoaderService {
 
   loadMoreFeedClucks() {
     if (!this.myFeedCluckPage!.last) {
-      console.log('Loading more...');
       this.loading = true;
       this.myFeedCurrPage++;
       this.cluck.getPersonalFeed({ page: this.myFeedCurrPage }).subscribe({

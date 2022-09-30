@@ -1,0 +1,22 @@
+<div class="w-screen" *ngIf="user">
+  <div class="py-2 w-full flex justify-between">
+    <button class="p-5 active:scale-90 transition-all" (click)="goBack()">
+      <fa-icon icon="chevron-left" size="xl"></fa-icon>
+    </button>
+    <button class="p-5 active:scale-90 transition-all">
+      <fa-icon icon="ellipsis-v" size="xl"></fa-icon>
+    </button>
+  </div>
+  <div class="my-2 w-screen flex justify-center items-center">
+    <app-user-avatar iconSize="6x" [user]="user"></app-user-avatar>
+  </div>
+  <div class="my-2 text-center font-bold text-xl">
+    {{user.username}}
+  </div>
+  <div class="my-2 text-center font-bold text-lg text-primary">
+    {{user.eggRating}} <fa-icon icon="egg"></fa-icon>
+  </div>
+  <div class="my-2 text-center" [ngClass]="{ 'opacity-50': !!user.bio }">
+    {{user.bio}} <fa-icon icon="edit"></fa-icon>
+  </div>
+</div>

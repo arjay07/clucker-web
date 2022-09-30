@@ -3,20 +3,32 @@ import {JwtService} from './jwt.service';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {environment} from '@env';
 import {User} from '@models/user';
-import {Observable} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  api = environment.api;
-  tokenKey = environment.tokenKey;
+  private api = environment.api;
+  private tokenKey = environment.tokenKey;
+  private currentAuthedUser?: User;
+  private currentUserSubject = new Subject<User>();
 
   constructor(private http: HttpClient, private jwt: JwtService) { }
 
   get currentUser(): Observable<User> {
-    return this.http.get<User>(`${this.api}/users/self`);
+    if (this.currentAuthedUser) {
+      return of(this.currentAuthedUser)
+    } else {
+      this.http.get<User>(`${this.api}/users/self`).subscribe({
+        next: next => {
+          this.currentAuthedUser = next;
+          this.currentUserSubject.next(this.currentAuthedUser);
+        }
+      });
+      return this.currentUserSubject.asObservable();
+    }
   }
 
   get loggedIn(): boolean {
