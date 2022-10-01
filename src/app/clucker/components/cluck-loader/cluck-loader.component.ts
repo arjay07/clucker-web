@@ -3,6 +3,9 @@ import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
 import {Subject} from 'rxjs';
 import {CluckService} from '@clucker/services/cluck.service';
 import {Cluck} from '@models/cluck';
+import {PageParams} from '@models/page';
+import {AuthService} from '@services/auth.service';
+
 @Component({
   selector: 'app-cluck-loader',
   templateUrl: './cluck-loader.component.html',
@@ -11,29 +14,46 @@ import {Cluck} from '@models/cluck';
 export class CluckLoaderComponent implements OnInit {
 
   @Input()
-  mode!: 'FEED' | 'DISCOVER' | 'SEARCH' | 'QUERY' | 'DEFAULT';
+  mode!: 'FEED' | 'DISCOVER' | 'SEARCH' | 'QUERY' | 'MY_CLUCKS' | 'USER_CLUCKS' | 'DEFAULT';
   targetElement: any;
 
-  constructor(public cluckLoader: CluckLoaderService, public cluck: CluckService) {
+  @Input()
+  params?: PageParams;
+
+  @Input()
+  userId?: number;
+
+  constructor(public cluckLoader: CluckLoaderService, private cluck: CluckService, private auth: AuthService) {
     this.targetElement = document.querySelector('html');
   }
 
   ngOnInit(): void {
-    this.cluckLoader.loadClucks();
+    this.loadClucks();
   }
 
   refreshClucks(event: Subject<any>) {
-    switch (this.mode) {
-      case 'FEED':
-        this.cluckLoader.loadClucks(this.cluck.getPersonalFeed, {
-          complete: () => {
-            event.next({});
-          }
-        });
-        break;
-      default:
-        console.error(`Unimplemented CluckLoader mode: ${this.mode}`);
-        break;
+    this.loadClucks({
+      complete: () => {
+        event.next({});
+      }
+    })
+  }
+
+  loadClucks(callbacks?: { success?: () => void, complete?: () => void }) {
+    if (this.mode === 'FEED') {
+      this.cluckLoader.loadClucks(this.cluck.getPersonalFeed, callbacks);
+    } else if (this.mode === 'QUERY') {
+      this.cluckLoader.loadClucks(() => this.cluck.getClucks(this.params), callbacks);
+    } else if (this.mode === 'MY_CLUCKS') {
+      this.auth.currentUser.subscribe(user => {
+        this.cluckLoader.loadClucks(() => this.cluck.getUserClucks(user.id), callbacks);
+      });
+    } else if (this.mode === 'USER_CLUCKS') {
+      if (!this.userId)
+        throw new Error('\'userId\' is required with CluckLoader mode USER_CLUCKS.');
+      this.cluckLoader.loadClucks(() => this.cluck.getUserClucks(this.userId!), callbacks);
+    } else {
+      console.error(`Unimplemented CluckLoader mode: ${this.mode}`);
     }
   }
 
