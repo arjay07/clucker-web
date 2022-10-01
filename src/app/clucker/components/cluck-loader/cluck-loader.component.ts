@@ -10,7 +10,7 @@ import {Cluck} from '@models/cluck';
 export class CluckLoaderComponent implements OnInit {
 
   @Input()
-  mode!: 'FEED' | 'DISCOVER' | 'SEARCH' | 'DEFAULT';
+  mode!: 'FEED' | 'DISCOVER' | 'SEARCH' | 'QUERY' | 'DEFAULT';
   targetElement: any;
 
   constructor(public cluckLoader: CluckLoaderService) {

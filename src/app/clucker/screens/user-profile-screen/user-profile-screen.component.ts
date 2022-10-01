@@ -13,6 +13,7 @@ export class UserProfileScreenComponent implements OnInit {
 
   user?: User;
   currentUserProfile = false;
+  currentPage: 'MY_CLUCKS' | 'LIKED_CLUCKS' = 'MY_CLUCKS';
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
