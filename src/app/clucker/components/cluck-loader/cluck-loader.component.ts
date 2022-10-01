@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
 import {Subject} from 'rxjs';
+import {CluckService} from '@clucker/services/cluck.service';
 import {Cluck} from '@models/cluck';
 @Component({
   selector: 'app-cluck-loader',
@@ -13,18 +14,18 @@ export class CluckLoaderComponent implements OnInit {
   mode!: 'FEED' | 'DISCOVER' | 'SEARCH' | 'QUERY' | 'DEFAULT';
   targetElement: any;
 
-  constructor(public cluckLoader: CluckLoaderService) {
+  constructor(public cluckLoader: CluckLoaderService, public cluck: CluckService) {
     this.targetElement = document.querySelector('html');
   }
 
   ngOnInit(): void {
-    this.cluckLoader.loadFeedClucks({});
+    this.cluckLoader.loadClucks();
   }
 
   refreshClucks(event: Subject<any>) {
     switch (this.mode) {
       case 'FEED':
-        this.cluckLoader.loadFeedClucks({
+        this.cluckLoader.loadClucks(this.cluck.getPersonalFeed, {
           complete: () => {
             event.next({});
           }
@@ -37,7 +38,7 @@ export class CluckLoaderComponent implements OnInit {
   }
 
   loadMore() {
-    this.cluckLoader.loadMoreFeedClucks();
+    this.cluckLoader.loadMoreClucks();
   }
 
   trackByCluckId(index: number, cluck: Cluck) {

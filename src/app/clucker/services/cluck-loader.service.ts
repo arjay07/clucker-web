@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {CluckService} from '@clucker/services/cluck.service';
 import {Page} from '@models/page';
 import {Cluck} from '@models/cluck';
+import {CluckLoaderFunction} from '@interfaces/cluck-loader-function.type';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +11,20 @@ export class CluckLoaderService {
 
   loading = false;
 
-  myFeedClucks: Cluck[] = [];
-  myFeedCluckPage?: Page<Cluck>;
-  myFeedCurrPage = 0;
+  clucks: Cluck[] = [];
+  page?: Page<Cluck>;
+  currPage = 0;
 
   constructor(private cluck: CluckService) { }
 
-  loadFeedClucks({success, complete}: { success?: (clucks: Page<Cluck>) => void, complete?: () => void}) {
+  loadClucks(observable: CluckLoaderFunction = this.cluck.getPersonalFeed, {success, complete}: { success?: (clucks: Page<Cluck>) => void, complete?: () => void} = {}) {
     this.loading = true;
-    this.myFeedCurrPage = 0;
-    this.myFeedClucks = [];
-    this.cluck.getPersonalFeed().subscribe({
+    this.currPage = 0;
+    this.clucks = [];
+    observable.bind(this.cluck)().subscribe({
       next: clucks => {
-        this.myFeedCluckPage = clucks;
-        this.myFeedClucks = clucks.content;
+        this.page = clucks;
+        this.clucks = clucks.content;
         if (success) success(clucks);
       },
       complete: () => {
@@ -33,14 +34,14 @@ export class CluckLoaderService {
     });
   }
 
-  loadMoreFeedClucks() {
-    if (!this.myFeedCluckPage!.last) {
+  loadMoreClucks(observable: CluckLoaderFunction = this.cluck.getPersonalFeed) {
+    if (!this.page!.last) {
       this.loading = true;
-      this.myFeedCurrPage++;
-      this.cluck.getPersonalFeed({ page: this.myFeedCurrPage }).subscribe({
+      this.currPage++;
+      observable.bind(this.cluck)({ page: this.currPage }).subscribe({
         next: clucks => {
-          this.myFeedCluckPage = clucks;
-          this.myFeedClucks.push(...clucks.content);
+          this.page = clucks;
+          this.clucks.push(...clucks.content);
           this.loading = false;
         },
         complete: () => {
@@ -51,8 +52,8 @@ export class CluckLoaderService {
   }
 
   addCluckToFeed(cluck: Cluck, end: boolean = false) {
-    if (this.myFeedClucks) {
-      this.myFeedClucks.unshift(cluck);
+    if (this.clucks) {
+      this.clucks.unshift(cluck);
     }
   }
 }

@@ -1,5 +1,5 @@
 <div *ngIf="user && !loading; else spinner">
-  <button [ngSwitch]="mode" [routerLink]="['user', user.username]">
+  <button [ngSwitch]="mode" [routerLink]="['/', 'user', user.username]">
   <span *ngSwitchCase="'default'">
     <fa-layers [size]="iconSize" [fixedWidth]="true">
       <fa-icon icon="circle" [styles]="userStyle"></fa-icon>

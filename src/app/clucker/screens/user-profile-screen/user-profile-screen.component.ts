@@ -21,11 +21,13 @@ export class UserProfileScreenComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['username']) {
         const { username } = params;
-        this.userService.getUserByUsername(username).subscribe(user => this.user = user);
-        this.userService.getSelf().subscribe(user => {
-          if (this.user) {
-            this.currentUserProfile = this.user.id === user.id;
-          }
+        this.userService.getUserByUsername(username).subscribe(user => {
+          this.user = user;
+          this.userService.getSelf().subscribe(user => {
+            if (this.user) {
+              this.currentUserProfile = this.user.id === user.id;
+            }
+          });
         });
       }
     });

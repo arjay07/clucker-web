@@ -20,12 +20,14 @@
     <span class="text-sm">
       {{user.bio}}
     </span>
-    <span class="text-sm opacity-50">
+    <ng-container *ngIf="currentUserProfile">
+      <span *ngIf="!user.bio" class="text-sm opacity-50">
       Add a bio...
     </span>
-    <button type="button" class="text-center mx-1 active:scale-95 transition-transform rounded ">
-      <fa-icon icon="edit"></fa-icon>
-    </button>
+      <button type="button" class="text-center mx-1 active:scale-95 transition-transform rounded ">
+        <fa-icon icon="edit"></fa-icon>
+      </button>
+    </ng-container>
   </div>
   <div class="flex justify-evenly mt-3">
     <button class="p-3 border-b border-b-2 w-full active:bg-gray-50"
