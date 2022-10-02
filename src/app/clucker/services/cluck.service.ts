@@ -30,5 +30,13 @@ export class CluckService {
   getUserClucks(userId: number, params: PageParams = { sort: [ 'posted,desc' ] }): Observable<Page<Cluck>> {
     return this.http.get<Page<Cluck>>(`${this.api}/users/${userId}/clucks`, { params });
   }
+
+  addEggToCluck(cluckId: string): Observable<Cluck> {
+    return this.http.put<Cluck>(`${this.api}/clucks/${cluckId}/rating`, null);
+  }
+
+  removeEggFromCluck(cluckId: string): Observable<Cluck> {
+    return this.http.delete<Cluck>(`${this.api}/clucks/${cluckId}/rating`);
+  }
 }
 
