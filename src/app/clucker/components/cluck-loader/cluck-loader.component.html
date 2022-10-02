@@ -5,8 +5,8 @@
                      [distanceForRefresh]="85"
                      spinnerColor="#ff5757"
                      [isEnable]="true">
-  <div *ngIf="cluckLoader.myFeedClucks">
-    <app-cluck-view *ngFor="let cluck of cluckLoader.myFeedClucks; trackBy: trackByCluckId" [cluck]="cluck"></app-cluck-view>
+  <div *ngIf="cluckLoader.clucks">
+    <app-cluck-view *ngFor="let cluck of cluckLoader.clucks; trackBy: trackByCluckId" [cluck]="cluck"></app-cluck-view>
   </div>
 </ngx-pull-to-refresh>
 

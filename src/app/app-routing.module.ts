@@ -13,6 +13,7 @@ import {AlreadyLoggedInGuard} from '@guards/already-logged-in.guard';
 import {DiscoverScreenComponent} from '@clucker/screens/discover-screen/discover-screen.component';
 import {NotificationsScreenComponent} from '@clucker/screens/notifications-screen/notifications-screen.component';
 import {SearchScreenComponent} from '@clucker/screens/search-screen/search-screen.component';
+import {UserProfileScreenComponent} from '@clucker/screens/user-profile-screen/user-profile-screen.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
         }
       }
     ]
+  },
+  {
+    path: 'user/:username',
+    component: UserProfileScreenComponent
   },
   {
     path: 'login',

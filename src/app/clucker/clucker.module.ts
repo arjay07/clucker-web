@@ -21,6 +21,7 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { CluckFormComponent } from './components/cluck-form/cluck-form.component';
 import { CluckLoaderComponent } from './components/cluck-loader/cluck-loader.component';
 import {NgxPullToRefreshModule} from 'ngx-pull-to-refresh';
+import { UserProfileScreenComponent } from './screens/user-profile-screen/user-profile-screen.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {NgxPullToRefreshModule} from 'ngx-pull-to-refresh';
     AbbreviateCountPipe,
     TimeAgoPipe,
     CluckFormComponent,
-    CluckLoaderComponent
+    CluckLoaderComponent,
+    UserProfileScreenComponent
   ],
     imports: [
         CommonModule,

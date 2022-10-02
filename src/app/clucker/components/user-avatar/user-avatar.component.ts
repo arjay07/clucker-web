@@ -1,5 +1,8 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {User} from '@models/user';
+import {SizeProp} from '@fortawesome/fontawesome-svg-core';
+import {AuthService} from '@services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-avatar',
@@ -13,6 +16,9 @@ export class UserAvatarComponent implements OnInit, OnChanges {
 
   @Input()
   user?: User;
+
+  @Input()
+  iconSize: SizeProp = '2x';
 
   loading = true;
 
