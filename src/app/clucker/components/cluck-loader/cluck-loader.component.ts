@@ -23,6 +23,8 @@ export class CluckLoaderComponent implements OnInit {
   @Input()
   userId?: number;
 
+  showComments = false;
+
   constructor(public cluckLoader: CluckLoaderService, private cluck: CluckService, private auth: AuthService) {
     this.targetElement = document.querySelector('html');
   }
@@ -63,6 +65,10 @@ export class CluckLoaderComponent implements OnInit {
 
   trackByCluckId(index: number, cluck: Cluck) {
     return cluck.id;
+  }
+
+  openCommentScreen() {
+    this.showComments = true;
   }
 
 }

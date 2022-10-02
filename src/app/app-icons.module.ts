@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {
+  faAngleDown,
   faBell,
   faChevronLeft,
   faChevronRight, faCircle, faCircleNotch, faComment, faCommenting,
@@ -36,7 +37,8 @@ const icons: IconDefinition[] = [
   faPaperPlaneTop,
   faChevronLeft,
   faEllipsisVertical,
-  faEdit
+  faEdit,
+  faAngleDown
 ];
 
 @NgModule({

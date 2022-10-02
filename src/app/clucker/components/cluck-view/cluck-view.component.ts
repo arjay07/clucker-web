@@ -17,7 +17,7 @@ export class CluckViewComponent implements OnInit {
   author?: User;
 
   @Output()
-  onComment: EventEmitter<Cluck> = new EventEmitter<Cluck>();
+  commentButtonActive: EventEmitter<Cluck> = new EventEmitter<Cluck>();
 
   constructor(private userService: UserService, private cluckService: CluckService) { }
 
@@ -41,7 +41,7 @@ export class CluckViewComponent implements OnInit {
   }
 
   comment() {
-    this.onComment.emit(this.cluck);
+    this.commentButtonActive.emit(this.cluck);
   }
 
 }
