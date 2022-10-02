@@ -32,7 +32,7 @@
       </button>
       <div class="border-y p-2 mx-1 text-center flex-shrink flex items-center">
         <textarea class="text-xs text-center resize-none outline-none" rows="1" cols="3" [readOnly]="true">{{cluck.eggRating | abbreviateCount}}</textarea>
-        <fa-icon class="inline-block" icon="egg"></fa-icon>
+        <fa-icon class="inline-block" [ngClass]="{ 'opacity-50': cluck.liked === 0 }" icon="egg"></fa-icon>
       </div>
       <button (click)="removeEgg()" type="button" class="flex-grow w-full m-0 p-2.5 active:bg-gray-50 transition-colors">
         <fa-icon icon="minus"></fa-icon>
