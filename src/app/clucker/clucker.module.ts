@@ -22,6 +22,11 @@ import { CluckFormComponent } from './components/cluck-form/cluck-form.component
 import { CluckLoaderComponent } from './components/cluck-loader/cluck-loader.component';
 import {NgxPullToRefreshModule} from 'ngx-pull-to-refresh';
 import { UserProfileScreenComponent } from './screens/user-profile-screen/user-profile-screen.component';
+import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { CommentViewComponent } from './components/comment-view/comment-view.component';
+import { CommentLoaderComponent } from './components/comment-loader/comment-loader.component';
+import { CompactCluckViewComponent } from './components/compact-cluck-view/compact-cluck-view.component';
+import { CluckTextFormComponent } from './components/cluck-text-form/cluck-text-form.component';
 
 
 @NgModule({
@@ -43,7 +48,12 @@ import { UserProfileScreenComponent } from './screens/user-profile-screen/user-p
     TimeAgoPipe,
     CluckFormComponent,
     CluckLoaderComponent,
-    UserProfileScreenComponent
+    UserProfileScreenComponent,
+    CommentFormComponent,
+    CommentViewComponent,
+    CommentLoaderComponent,
+    CompactCluckViewComponent,
+    CluckTextFormComponent
   ],
     imports: [
         CommonModule,
