@@ -27,14 +27,14 @@
       </div>
     </div>
     <div class="border-l py-2 flex-shrink flex flex-col items-center my-auto justify-between text-primary text-center">
-      <button type="button" class="flex-grow m-0 p-2.5 w-full active:bg-gray-50 transition-colors">
+      <button (click)="addEgg()" type="button" class="flex-grow m-0 p-2.5 w-full active:bg-gray-50 transition-colors">
         <fa-icon icon="plus"></fa-icon>
       </button>
       <div class="border-y p-2 mx-1 text-center flex-shrink flex items-center">
         <textarea class="text-xs text-center resize-none outline-none" rows="1" cols="3" [readOnly]="true">{{cluck.eggRating | abbreviateCount}}</textarea>
-        <fa-icon icon="egg"></fa-icon>
+        <fa-icon class="inline-block" [ngClass]="{ 'opacity-50': cluck.liked === 0 }" icon="egg"></fa-icon>
       </div>
-      <button type="button" class="flex-grow w-full m-0 p-2.5 active:bg-gray-50 transition-colors">
+      <button (click)="removeEgg()" type="button" class="flex-grow w-full m-0 p-2.5 active:bg-gray-50 transition-colors">
         <fa-icon icon="minus"></fa-icon>
       </button>
     </div>
