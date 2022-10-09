@@ -6,9 +6,9 @@
                   [(ngModel)]="body"
                   (focus)="sendFocusEvent($event)"
                   (blur)="sendBlurEvent($event)"
-                  rows="3"
+                  [rows]="rows"
                   [placeholder]="textAreaPlaceholder" class="rounded-xl text resize-none border outline-none transition-all w-full p-3 overflow-y-hidden"></textarea>
-    <div class="absolute bottom-0 right-0 p-3 font-bold text-primary opacity-60 {{cluckWords >= 6 ? 'animate__headShake' : ''}} animate__animated animate__fast">
+    <div *ngIf="showWordCount" class="absolute bottom-0 right-0 p-3 font-bold text-primary opacity-60 {{cluckWords >= 6 ? 'animate__headShake' : ''}} animate__animated animate__fast">
       {{cluckWords}}/6
     </div>
   </div>

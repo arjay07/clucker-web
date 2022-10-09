@@ -31,6 +31,12 @@ export class CluckTextFormComponent implements OnInit {
   @Output()
   onPostCluck = new EventEmitter<PostCluck>();
 
+  @Input()
+  rows = 3;
+
+  @Input()
+  showWordCount = true;
+
   constructor() { }
 
   ngOnInit(): void {

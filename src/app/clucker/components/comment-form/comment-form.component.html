@@ -1,14 +1,26 @@
 <div *ngIf="show" (click)="closeForm()" class="bg-opacity-40 bg-black w-screen min-h-screen fixed top-0 left-0
                         animate__animated {{ closing ? 'animate__fadeOut' : 'animate__fadeIn' }} animate__fastest"></div>
-<div *ngIf="show" class="fixed bottom-0 w-full">
+<div *ngIf="show" class="fixed left-0 bottom-0 w-full">
+
+  <div class="bg-white w-[85%] max-w-[320px] mx-auto py-4 px-6 rounded-xl mb-3
+              drop-shadow animate__animated animate__fastest {{ closing ? 'animate__fadeOutDown' : 'animate__fadeInUp' }}">
+    Test
+  </div>
+
   <div class="bg-white w-[85%] max-w-[320px] mx-auto py-4 px-6 rounded-t-xl
               drop-shadow animate__animated animate__fastest {{ closing ? 'animate__slideOutDown' : 'animate__slideInUp' }}">
     <div class="flex justify-center w-full pb-5">
       <h1 class="flex-grow text-center font-bold">Comment</h1>
-      <button type="button" class="absolute right-0 top-0 my-3 mr-7 active:scale-90 transition-all active:text-primary">
+      <button *ngIf="showArrow" type="button" class="absolute right-0 top-0 my-3 mr-7 active:scale-90 transition-all active:text-primary">
         <fa-icon icon="angle-down"></fa-icon>
       </button>
     </div>
-    <app-cluck-text-form (onPostCluck)="postComment($event)" postButtonText="Comment" textAreaPlaceholder="What do you think about this?"></app-cluck-text-form>
+    <app-cluck-text-form [rows]="rows"
+                         [showWordCount]="showWordCount"
+                         (focus)="onCommentInputFocus()"
+                         (blur)="onCommentInputBlur()"
+                         (onPostCluck)="postComment($event)"
+                         postButtonText="Comment"
+                         textAreaPlaceholder="What do you think about this?"></app-cluck-text-form>
   </div>
 </div>

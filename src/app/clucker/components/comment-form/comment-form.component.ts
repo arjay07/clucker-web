@@ -18,6 +18,9 @@ export class CommentFormComponent implements OnInit {
 
   @Output()
   onPostComment = new EventEmitter<PostCluck>();
+  rows = 1;
+  showWordCount = false;
+  showArrow = false;
 
   constructor() { }
 
@@ -36,5 +39,17 @@ export class CommentFormComponent implements OnInit {
       this.closing = false;
       this.showChange.emit(this.show);
     }, 300);
+  }
+
+  onCommentInputFocus() {
+    this.rows = 3;
+    this.showWordCount = true;
+    this.showArrow = true;
+  }
+
+  onCommentInputBlur() {
+    this.rows = 1;
+    this.showWordCount = false;
+    this.showArrow = false;
   }
 }
