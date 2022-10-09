@@ -20,6 +20,8 @@ export class CluckLoaderComponent implements OnInit {
   @Input()
   params?: PageParams;
 
+  activeCluck?: Cluck;
+
   @Input()
   userId?: number;
 
@@ -67,7 +69,8 @@ export class CluckLoaderComponent implements OnInit {
     return cluck.id;
   }
 
-  openCommentScreen() {
+  openCommentScreen(commentCluck: Cluck) {
+    this.activeCluck = commentCluck;
     this.showComments = true;
   }
 

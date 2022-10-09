@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CluckFormComponent} from '@clucker/components/cluck-form/cluck-form.component';
 import {PostCluck} from '@models/post-cluck';
+import {Cluck} from '@models/cluck';
 
 @Component({
   selector: 'app-comment-form',
@@ -11,6 +12,9 @@ export class CommentFormComponent implements OnInit {
   closing = false;
 
   @Input()
+  cluck!: Cluck;
+
+  @Input()
   show = false;
 
   @Output()
@@ -19,8 +23,8 @@ export class CommentFormComponent implements OnInit {
   @Output()
   onPostComment = new EventEmitter<PostCluck>();
   rows = 1;
-  showWordCount = false;
-  showArrow = false;
+  focusing = false;
+  focused = false;
 
   constructor() { }
 
@@ -29,7 +33,6 @@ export class CommentFormComponent implements OnInit {
 
   postComment(comment: PostCluck) {
     this.onPostComment.emit(comment);
-    this.closeForm();
   }
 
   closeForm() {
@@ -42,14 +45,16 @@ export class CommentFormComponent implements OnInit {
   }
 
   onCommentInputFocus() {
-    this.rows = 3;
-    this.showWordCount = true;
-    this.showArrow = true;
+    this.rows = 5;
+    this.focusing = true;
+    setTimeout(() => {
+      this.focused = true;
+    }, 300);
   }
 
   onCommentInputBlur() {
     this.rows = 1;
-    this.showWordCount = false;
-    this.showArrow = false;
+    this.focusing = false;
+    this.focused = false;
   }
 }

@@ -7,12 +7,12 @@
                      [isEnable]="true">
   <div *ngIf="cluckLoader.clucks">
     <app-cluck-view *ngFor="let cluck of cluckLoader.clucks; trackBy: trackByCluckId"
-                    [cluck]="cluck" (commentButtonActive)="openCommentScreen()"></app-cluck-view>
+                    [cluck]="cluck" (commentButtonActive)="openCommentScreen($event)"></app-cluck-view>
   </div>
 </ngx-pull-to-refresh>
 
-<div class="top-0 left-0 z-10 absolute">
+<div class="top-0 left-0 z-10 absolute" *ngIf="activeCluck">
   <div class="absolute top-0 left-0">
-    <app-comment-form [(show)]="showComments"></app-comment-form>
+    <app-comment-form [(show)]="showComments" [cluck]="activeCluck"></app-comment-form>
   </div>
 </div>
