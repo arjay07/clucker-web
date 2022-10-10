@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {PostCluck} from '@models/post-cluck';
 import {Cluck} from '@models/cluck';
-import {map, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {environment} from '@env';
 import {Page, PageParams} from '@models/page';
 

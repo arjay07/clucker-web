@@ -1,10 +1,10 @@
 <div *ngIf="show" (click)="closeForm()" class="bg-opacity-40 bg-black w-screen min-h-screen min-w-full fixed top-0 left-0
                         animate__animated {{ closing ? 'animate__fadeOut' : 'animate__fadeIn' }} animate__fastest"></div>
 <div *ngIf="show" class="fixed left-0 bottom-0 w-screen pointer-events-none">
-  <div class="flex flex-col justify-end h-[600px] pointer-events-none">
-    <div class="bg-white w-[85%] max-w-[320px] mx-auto py-4 px-6 rounded-xl mb-3 pointer-events-auto
+  <div class="flex flex-col justify-end h-screen max-h-[800px] pointer-events-none">
+    <div class="bg-white w-[90%] max-w-[400px] mx-auto py-4 px-6 rounded-xl mb-3 pointer-events-auto
               drop-shadow animate__animated animate__fastest {{ closing ? 'animate__fadeOutDown' : 'animate__fadeInUp' }}">
-      <app-cluck-view [cluck]="cluck"></app-cluck-view>
+      <app-compact-cluck-view [cluck]="cluck" (closeButtonClick)="closeForm()"></app-compact-cluck-view>
     </div>
 
     <div *ngIf="!focused"
@@ -17,12 +17,19 @@
           'overflow-hidden': focusing,
           'py-0': focusing
          }"
-         class="flex-grow bg-white w-[85%] max-w-[320px] mx-auto px-6 mb-3 rounded-xl mb-3 pointer-events-auto
-              drop-shadow animate__animated animate__fastest transition transition-[max-height,padding-top,padding-bottom]  duration-300">
-      Comments
+         class="flex-grow bg-white w-[90%] max-w-[400px] mx-auto px-6 mb-3 rounded-xl mb-3 pointer-events-auto
+              drop-shadow animate__animated animate__fastest transition
+              transition-[max-height,padding-top,padding-bottom] duration-300">
+      <div class="font-bold">
+        <span *ngIf="cluck.commentCount; else no">{{ cluck.commentCount | abbreviateCount }}</span>
+        <ng-template #no>No</ng-template> Comments
+      </div>
+      <div *ngIf="!cluck.commentCount" class="my-2 text-gray-400 text-sm">
+        Be the first to comment!
+      </div>
     </div>
 
-    <div class="bg-white w-[85%] max-w-[320px] mx-auto py-4 px-6 rounded-t-xl pointer-events-auto
+    <div class="bg-white w-[90%] max-w-[400px] mx-auto py-4 px-6 rounded-t-xl pointer-events-auto
               drop-shadow animate__animated animate__fastest {{ closing ? 'animate__slideOutDown' : 'animate__slideInUp' }}">
       <div class="flex justify-center w-full pb-5">
         <h1 class="flex-grow text-center font-bold">Comment</h1>

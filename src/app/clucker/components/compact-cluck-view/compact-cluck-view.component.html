@@ -1,1 +1,38 @@
-<p>compact-cluck-view works!</p>
+<div class="p-2">
+  <div class="flex flex-row items-center justify-around">
+    <div class="mr-2 flex-shrink">
+      <app-user-avatar [user]="author" iconSize="2xl"></app-user-avatar>
+    </div>
+    <div *ngIf="author" class="flex-grow">
+      <div class="font-bold">
+        {{author.username}}
+      </div>
+      <div class="text-sm text-gray-400">
+        {{cluck.posted | timeAgo}}
+      </div>
+    </div>
+    <div class="py-2 text-center flex-shrink">
+      <button type="button" class="active:scale-90 transition-all text-primary px-5">
+        <fa-icon icon="share-nodes"></fa-icon>
+      </button>
+      <button type="button" (click)="closeForm()" class="active:scale-90 transition-all active:text-primary pl-5">
+        <fa-icon icon="times"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="my-4">
+    {{cluck.body}}
+  </div>
+  <div class="border-t flex flex-row justify-evenly py-1 text-primary">
+    <button type="button" (click)="removeEgg()" class="flex-grow w-full active:bg-gray-50 transition-colors rounded-lg">
+      <fa-icon icon="minus"></fa-icon>
+    </button>
+    <div class="text-center flex items-center border-x px-3">
+      <div class="mx-3">{{cluck.eggRating | abbreviateCount}}</div>
+      <fa-icon icon="egg" [ngClass]="{ 'opacity-50': cluck.liked === 0 }"></fa-icon>
+    </div>
+    <button type="button" (click)="addEgg()" class="flex-grow w-full active:bg-gray-50 transition-colors rounded-lg">
+      <fa-icon icon="plus"></fa-icon>
+    </button>
+  </div>
+</div>

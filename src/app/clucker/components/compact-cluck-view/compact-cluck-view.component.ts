@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Cluck} from '@models/cluck';
+import {User} from '@models/user';
+import {UserService} from '@services/user.service';
+import {CluckService} from '@clucker/services/cluck.service';
 
 @Component({
   selector: 'app-compact-cluck-view',
@@ -7,9 +11,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompactCluckViewComponent implements OnInit {
 
-  constructor() { }
+  @Output()
+  closeButtonClick = new EventEmitter();
+
+  @Input()
+  cluck!: Cluck;
+
+  author?: User;
+
+  constructor(private userService: UserService, private cluckService: CluckService) { }
 
   ngOnInit(): void {
+    this.userService.getUserById(this.cluck.authorId)
+      .subscribe({
+        next: user => this.author = user
+      });
+  }
+
+  addEgg() {
+    this.cluckService.addEggToCluck(this.cluck.id).subscribe({
+      next: cluck => this.cluck = cluck
+    });
+  }
+
+  removeEgg() {
+    this.cluckService.removeEggFromCluck(this.cluck.id).subscribe({
+      next: cluck => this.cluck = cluck
+    });
+  }
+
+  closeForm() {
+    this.closeButtonClick.emit();
   }
 
 }
