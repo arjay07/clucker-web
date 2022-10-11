@@ -5,7 +5,8 @@
     </div>
     <div *ngIf="author" class="flex-grow">
       <div class="font-bold">
-        {{author.username}}
+        {{author.username}} <span class="font-normal inline-block my-1 py-0.5 px-1 text-xs text-gray-50 bg-primary rounded-full"
+                                  *ngIf="comment.authorId === cluck.authorId">clucker</span>
       </div>
       <div class="text-sm text-gray-400">
         {{comment.posted | timeAgo}}

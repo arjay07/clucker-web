@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Comment} from '@models/comment';
 import {UserService} from '@services/user.service';
 import {User} from '@models/user';
+import {Cluck} from '@models/cluck';
 
 @Component({
   selector: 'app-comment-view',
@@ -9,6 +10,9 @@ import {User} from '@models/user';
   styleUrls: ['./comment-view.component.sass']
 })
 export class CommentViewComponent implements OnInit {
+
+  @Input()
+  cluck!: Cluck;
 
   @Input()
   comment!: Comment;

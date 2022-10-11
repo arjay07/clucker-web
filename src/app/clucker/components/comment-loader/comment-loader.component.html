@@ -5,6 +5,6 @@
                      spinnerColor="#ff5757"
                      [isEnable]="true">
   <div *ngIf="comments">
-    <app-comment-view *ngFor="let comment of comments; trackBy: trackByCommentId" [comment]="comment"></app-comment-view>
+    <app-comment-view *ngFor="let comment of comments; trackBy: trackByCommentId" [cluck]="cluck" [comment]="comment"></app-comment-view>
   </div>
 </ngx-pull-to-refresh>
