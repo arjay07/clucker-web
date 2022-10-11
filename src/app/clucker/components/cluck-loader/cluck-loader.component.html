@@ -13,6 +13,6 @@
 
 <div class="top-0 left-0 z-10 absolute" *ngIf="activeCluck">
   <div class="absolute top-0 left-0">
-    <app-comment-form [(show)]="showComments" [cluck]="activeCluck"></app-comment-form>
+    <app-comment-form [(show)]="showComments" [cluck]="activeCluck" (cluckChange)="activeCluckChanged($event)"></app-comment-form>
   </div>
 </div>

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Comment} from '@models/comment';
+import {UserService} from '@services/user.service';
+import {User} from '@models/user';
 
 @Component({
   selector: 'app-comment-view',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentViewComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  comment!: Comment;
+
+  author?: User;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getUserById(this.comment.authorId)
+      .subscribe({
+        next: user => this.author = user
+      });
   }
 
 }

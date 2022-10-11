@@ -14,6 +14,9 @@ export class CommentFormComponent implements OnInit {
   @Input()
   cluck!: Cluck;
 
+  @Output()
+  cluckChange = new EventEmitter<Cluck>();
+
   @Input()
   show = false;
 
@@ -56,5 +59,9 @@ export class CommentFormComponent implements OnInit {
     this.rows = 1;
     this.focusing = false;
     this.focused = false;
+  }
+
+  emitCluck(event: Cluck) {
+    this.cluckChange.emit(event);
   }
 }

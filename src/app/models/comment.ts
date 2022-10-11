@@ -3,7 +3,7 @@ export interface Comment {
   cluckId: string;
   body: string;
   author: string;
-  authorId: string;
+  authorId: number;
   posted: Date;
   lastModified: Date;
 }

@@ -1,1 +1,18 @@
-<p>comment-view works!</p>
+<div class="py-2 my-2 border-b">
+  <div class="flex flex-row items-center justify-around">
+    <div class="mr-2 flex-shrink">
+      <app-user-avatar [user]="author" iconSize="2xl"></app-user-avatar>
+    </div>
+    <div *ngIf="author" class="flex-grow">
+      <div class="font-bold">
+        {{author.username}}
+      </div>
+      <div class="text-sm text-gray-400">
+        {{comment.posted | timeAgo}}
+      </div>
+    </div>
+  </div>
+  <div class="my-2">
+    {{comment.body}}
+  </div>
+</div>

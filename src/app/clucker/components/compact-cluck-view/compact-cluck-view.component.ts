@@ -17,6 +17,9 @@ export class CompactCluckViewComponent implements OnInit {
   @Input()
   cluck!: Cluck;
 
+  @Output()
+  cluckChange = new EventEmitter<Cluck>();
+
   author?: User;
 
   constructor(private userService: UserService, private cluckService: CluckService) { }
@@ -29,19 +32,20 @@ export class CompactCluckViewComponent implements OnInit {
   }
 
   addEgg() {
-    this.cluckService.addEggToCluck(this.cluck.id).subscribe({
-      next: cluck => this.cluck = cluck
-    });
+    this.cluckService.addEggToCluck(this.cluck.id).subscribe(cluck => this.updateCluck(cluck));
   }
 
   removeEgg() {
-    this.cluckService.removeEggFromCluck(this.cluck.id).subscribe({
-      next: cluck => this.cluck = cluck
-    });
+    this.cluckService.removeEggFromCluck(this.cluck.id).subscribe(cluck => this.updateCluck(cluck));
   }
 
   closeForm() {
     this.closeButtonClick.emit();
+  }
+
+  private updateCluck(cluck: Cluck) {
+    this.cluck = cluck;
+    this.cluckChange.emit(cluck);
   }
 
 }

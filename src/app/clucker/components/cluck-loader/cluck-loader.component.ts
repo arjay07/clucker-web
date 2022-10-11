@@ -74,4 +74,12 @@ export class CluckLoaderComponent implements OnInit {
     this.showComments = true;
   }
 
+  activeCluckChanged(cluck: Cluck) {
+    if (this.activeCluck) {
+      const index = this.cluckLoader.clucks.indexOf(this.activeCluck);
+      this.activeCluck = cluck;
+      this.cluckLoader.clucks[index] = cluck;
+    }
+  }
+
 }

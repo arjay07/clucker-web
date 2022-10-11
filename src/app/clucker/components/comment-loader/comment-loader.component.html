@@ -1,1 +1,11 @@
-<p>comment-loader works!</p>
+<ngx-pull-to-refresh (refresh)="refreshComments($event)"
+                     (loadMore)="loadMore()"
+                     [spinnerSize]="30"
+                     [targetElement]="targetElement"
+                     [distanceForRefresh]="85"
+                     spinnerColor="#ff5757"
+                     [isEnable]="true">
+  <div *ngIf="comments">
+    <app-comment-view *ngFor="let comment of comments; trackBy: trackByCommentId" [comment]="comment"></app-comment-view>
+  </div>
+</ngx-pull-to-refresh>

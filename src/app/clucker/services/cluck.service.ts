@@ -5,6 +5,7 @@ import {Cluck} from '@models/cluck';
 import {Observable} from 'rxjs';
 import {environment} from '@env';
 import {Page, PageParams} from '@models/page';
+import {Comment} from '@models/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,10 @@ export class CluckService {
 
   removeEggFromCluck(cluckId: string): Observable<Cluck> {
     return this.http.delete<Cluck>(`${this.api}/clucks/${cluckId}/rating`);
+  }
+
+  getComments(cluckId: string): Observable<Page<Comment>> {
+    return this.http.get<Page<Comment>>(`${this.api}/clucks/${cluckId}/comments`);
   }
 }
 
