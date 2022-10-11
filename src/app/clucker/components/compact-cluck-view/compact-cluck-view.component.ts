@@ -17,6 +17,9 @@ export class CompactCluckViewComponent implements OnInit {
   @Input()
   cluck!: Cluck;
 
+  @Input()
+  hideX = false;
+
   @Output()
   cluckChange = new EventEmitter<Cluck>();
 

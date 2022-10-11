@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Comment} from '@models/comment';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {CluckService} from '@clucker/services/cluck.service';
 import {Cluck} from '@models/cluck';
 import {Page, PageParams} from '@models/page';
@@ -15,6 +15,9 @@ export class CommentLoaderComponent implements OnInit {
   @Input()
   cluck!: Cluck;
 
+  @Input()
+  addCommentObservable?: Observable<Comment>;
+
   targetElement: any;
   page?: Page<Comment>;
   comments: Comment[] = [];
@@ -26,6 +29,13 @@ export class CommentLoaderComponent implements OnInit {
   ngOnInit(): void {
     this.targetElement = document.querySelector('div#commentsView');
     this.loadComments();
+    if (this.addCommentObservable) {
+      this.addCommentObservable.subscribe(comment => {
+        if (this.comments) {
+          this.comments.unshift(comment);
+        }
+      });
+    }
   }
 
   refreshComments(event: Subject<any>) {

@@ -4,6 +4,8 @@ import {PostCluck} from '@models/post-cluck';
 import {Cluck} from '@models/cluck';
 import {PostComment} from '@models/post-comment';
 import {CluckService} from '@clucker/services/cluck.service';
+import {Subject} from 'rxjs';
+import {Comment} from '@models/comment';
 
 @Component({
   selector: 'app-comment-form',
@@ -31,6 +33,8 @@ export class CommentFormComponent implements OnInit {
   focusing = false;
   focused = false;
 
+  addCommentEvent = new Subject<Comment>();
+
   constructor(private cluckService: CluckService) { }
 
   ngOnInit(): void {
@@ -41,7 +45,9 @@ export class CommentFormComponent implements OnInit {
 
     this.cluckService.postComment(this.cluck.id, comment).subscribe({
       next: data => {
-        console.log(data);
+        this.addCommentEvent.next(data);
+        this.cluck.commentCount++;
+        this.emitCluck(this.cluck);
       }
     });
   }
