@@ -11,20 +11,20 @@
          [ngClass]="{
           'animate__fadeOutDown': closing,
           'animate__fadeInUp': !closing,
-          'max-h-full': !focusing,
+          'max-h-[500px]': !focusing,
           'py-4': !focusing,
           'max-h-0': focusing,
           'overflow-hidden': focusing,
           'py-0': focusing
          }"
-         class="flex-grow bg-white w-[90%] max-w-[400px] mx-auto px-6 mb-3 rounded-xl mb-3 pointer-events-auto touch-none
+         class="flex-grow flex flex-col bg-white w-[90%] max-w-[400px] mx-auto px-6 mb-3 rounded-xl mb-3 pointer-events-auto touch-none
               drop-shadow animate__animated animate__fastest transition
-              transition-[max-height,padding-top,padding-bottom] duration-300">
-      <div class="font-bold">
+              transition-[max-height,padding-top,padding-bottom] duration-300" id="commentsView">
+      <div class="font-bold flex-shrink pb-4">
         <span *ngIf="cluck.commentCount; else no">{{ cluck.commentCount | abbreviateCount }}</span>
         <ng-template #no>No</ng-template> Comment{{cluck.commentCount != 1 ? 's': ''}}
       </div>
-      <div *ngIf="cluck.commentCount; else noCommentsMessage">
+      <div *ngIf="cluck.commentCount; else noCommentsMessage" class="overflow-y-scroll flex-grow">
         <app-comment-loader [cluck]="cluck"></app-comment-loader>
       </div>
       <ng-template #noCommentsMessage>

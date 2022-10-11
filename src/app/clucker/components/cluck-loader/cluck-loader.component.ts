@@ -5,6 +5,8 @@ import {CluckService} from '@clucker/services/cluck.service';
 import {Cluck} from '@models/cluck';
 import {PageParams} from '@models/page';
 import {AuthService} from '@services/auth.service';
+import {Comment} from '@models/comment';
+import {PostComment} from '@models/post-comment';
 
 @Component({
   selector: 'app-cluck-loader',

@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {environment} from '@env';
 import {Page, PageParams} from '@models/page';
 import {Comment} from '@models/comment';
+import {PostComment} from '@models/post-comment';
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +41,12 @@ export class CluckService {
     return this.http.delete<Cluck>(`${this.api}/clucks/${cluckId}/rating`);
   }
 
-  getComments(cluckId: string): Observable<Page<Comment>> {
-    return this.http.get<Page<Comment>>(`${this.api}/clucks/${cluckId}/comments`);
+  getComments(cluckId: string, params: PageParams = { sort: ['posted,desc'] }): Observable<Page<Comment>> {
+    return this.http.get<Page<Comment>>(`${this.api}/clucks/${cluckId}/comments`, { params });
+  }
+
+  postComment(cluckId: string, requestBody: PostComment) {
+    return this.http.post<Comment>(`${this.api}/clucks/${cluckId}/comments`, requestBody);
   }
 }
 

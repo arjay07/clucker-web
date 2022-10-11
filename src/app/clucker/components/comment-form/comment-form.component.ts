@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CluckFormComponent} from '@clucker/components/cluck-form/cluck-form.component';
 import {PostCluck} from '@models/post-cluck';
 import {Cluck} from '@models/cluck';
+import {PostComment} from '@models/post-comment';
+import {CluckService} from '@clucker/services/cluck.service';
 
 @Component({
   selector: 'app-comment-form',
@@ -24,18 +26,24 @@ export class CommentFormComponent implements OnInit {
   showChange = new EventEmitter<boolean>();
 
   @Output()
-  onPostComment = new EventEmitter<PostCluck>();
+  onPostComment = new EventEmitter<PostComment>();
   rows = 1;
   focusing = false;
   focused = false;
 
-  constructor() { }
+  constructor(private cluckService: CluckService) { }
 
   ngOnInit(): void {
   }
 
-  postComment(comment: PostCluck) {
-    this.onPostComment.emit(comment);
+  postComment(postCluck: PostCluck) {
+    const comment: PostComment = { ...postCluck };
+
+    this.cluckService.postComment(this.cluck.id, comment).subscribe({
+      next: data => {
+        console.log(data);
+      }
+    });
   }
 
   closeForm() {
