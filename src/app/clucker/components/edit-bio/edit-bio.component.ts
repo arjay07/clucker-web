@@ -16,21 +16,32 @@ export class EditBioComponent implements OnInit, OnDestroy {
   @Input()
   user?: User;
 
+  oldBio = '';
+
   userProfileSubscription?: Subscription;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    if (this.user) {
+      this.oldBio = this.user.bio;
+    }
   }
 
   saveBio() {
     if (this.user) {
       this.saving = true;
-
       const {id} = this.user;
-
-      this.userProfileSubscription = this.userService.updateUserProfile(id, { bio: this.user.bio }).subscribe(() => {
-
+      this.userProfileSubscription = this.userService.updateUserProfile(id, { bio: this.user.bio }).subscribe({
+        next: () => {
+          if (this.user) {
+            this.oldBio = this.user.bio;
+          }
+        },
+        complete: () => {
+          this.saving = false;
+          this.editing = false;
+        }
       });
     }
   }
@@ -41,10 +52,6 @@ export class EditBioComponent implements OnInit, OnDestroy {
     }
   }
 
-  textBlur() {
-    console.log('Blur');
-  }
-
   buttonAction() {
     if (!this.editing) {
       this.editing = true;
@@ -52,6 +59,19 @@ export class EditBioComponent implements OnInit, OnDestroy {
       this.saveBio();
     }
   }
+
+  textBlur() {
+    if (this.user) {
+      this.user.bio = this.oldBio;
+    }
+    this.editing = false;
+  }
+
+  mouseDown(event: MouseEvent) {
+    if (this.editing)
+      event.preventDefault();
+  }
 }
+
 
 

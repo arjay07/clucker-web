@@ -3,9 +3,9 @@
     {{user.bio ? user.bio : 'Add a bio...'}}
   </span>
   <ng-template #bioTextArea>
-    <textarea [(ngModel)]="user.bio" [autofocus]="editing" (blur)="textBlur()" class="text-sm p-2 resize-none outline-none border-b-2 border-b-primary" rows="1" placeholder="Add a bio..."></textarea>
+    <textarea [(ngModel)]="user.bio" (blur)="textBlur()" [autofocus]="editing" class="text-sm p-2 resize-none outline-none border-b-2 border-b-primary" rows="2" placeholder="Add a bio..."></textarea>
   </ng-template>
-  <button (click)="buttonAction()" type="button" class="text-center mx-1 active:scale-95 transition-transform rounded">
-    <fa-icon [icon]="editing ? 'save' : 'edit'"></fa-icon>
+  <button (click)="buttonAction()" (mousedown)="mouseDown($event)" type="button" class="text-center mx-1 active:scale-95 transition-transform rounded">
+    <fa-icon [icon]="saving ? 'spinner-third' : editing ? 'save' : 'edit'" [spin]="saving"></fa-icon>
   </button>
 </div>
