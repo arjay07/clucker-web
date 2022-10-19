@@ -11,7 +11,7 @@ import {User} from '@models/user';
 })
 export class UserService {
 
-  api = environment.api;
+  private api = environment.api;
 
   constructor(private http: HttpClient) { }
 

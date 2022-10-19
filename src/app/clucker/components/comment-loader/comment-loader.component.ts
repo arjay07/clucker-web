@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Comment} from '@models/comment';
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 import {CluckService} from '@clucker/services/cluck.service';
 import {Cluck} from '@models/cluck';
 import {Page, PageParams} from '@models/page';
@@ -10,7 +10,7 @@ import {Page, PageParams} from '@models/page';
   templateUrl: './comment-loader.component.html',
   styleUrls: ['./comment-loader.component.sass']
 })
-export class CommentLoaderComponent implements OnInit {
+export class CommentLoaderComponent implements OnInit, OnDestroy {
 
   @Input()
   cluck!: Cluck;
@@ -23,6 +23,8 @@ export class CommentLoaderComponent implements OnInit {
   comments: Comment[] = [];
   currPage = 0;
   loading = false;
+
+  commentsSub?: Subscription;
 
   constructor(private cluckService: CluckService) { }
 
@@ -47,11 +49,11 @@ export class CommentLoaderComponent implements OnInit {
   }
 
   loadMore() {
-    console.log(this.page!.last)
+    this.unsubscribeFromComments();
     if (!this.page!.last) {
       this.loading = true;
       this.currPage++;
-      this.cluckService.getComments(this.cluck.id, { size: 10, page: this.currPage, sort: [ 'posted,desc' ]}).subscribe({
+      this.commentsSub = this.cluckService.getComments(this.cluck.id, { size: 10, page: this.currPage, sort: [ 'posted,desc' ]}).subscribe({
         next: commentsPage => {
           this.page = commentsPage;
           this.comments.push(...commentsPage.content);
@@ -69,7 +71,8 @@ export class CommentLoaderComponent implements OnInit {
   }
 
   loadComments(options?: { success?: (response: Page<Comment>) => void, complete?: () => void}) {
-    this.cluckService.getComments(this.cluck.id, { size: 10, page: 0, sort: [ 'posted,desc' ] }).subscribe({
+    this.unsubscribeFromComments();
+    this.commentsSub = this.cluckService.getComments(this.cluck.id, { size: 10, page: 0, sort: [ 'posted,desc' ] }).subscribe({
       next: commentPage => {
         this.page = commentPage;
         this.comments = commentPage.content;
@@ -81,5 +84,14 @@ export class CommentLoaderComponent implements OnInit {
         }
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribeFromComments();
+  }
+
+  unsubscribeFromComments() {
+    if (this.commentsSub)
+      this.commentsSub.unsubscribe();
   }
 }
