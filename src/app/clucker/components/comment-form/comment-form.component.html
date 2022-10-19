@@ -1,0 +1,54 @@
+<div *ngIf="show" (click)="closeForm()" class="bg-opacity-40 bg-black w-screen min-h-screen min-w-full fixed top-0 left-0
+                        animate__animated {{ closing ? 'animate__fadeOut' : 'animate__fadeIn' }} animate__fastest"></div>
+<div *ngIf="show" class="fixed left-0 bottom-0 max-h-screen w-screen pointer-events-none">
+  <div class="flex flex-col justify-end pointer-events-none max-h-screen">
+    <div class="bg-white w-[90%] max-w-[400px] mx-auto py-4 max-h-[30vh] px-6 rounded-xl mb-3 pointer-events-auto
+              drop-shadow animate__animated animate__fastest {{ closing ? 'animate__fadeOutDown' : 'animate__fadeInUp' }}">
+      <app-compact-cluck-view [(cluck)]="cluck" (cluckChange)="emitCluck($event)" (closeButtonClick)="closeForm()" [hideX]="focused"></app-compact-cluck-view>
+    </div>
+
+    <div [ngClass]="{
+          'animate__fadeOutDown': closing,
+          'animate__fadeInUp': !closing,
+          'max-h-[35vh]': !focusing,
+          'py-4': !focusing,
+          'max-h-0': focusing,
+          'overflow-hidden': focusing,
+          'py-0': focusing,
+          'hidden': focused
+         }"
+         class="flex-grow flex flex-col bg-white w-[90%] max-w-[400px] mx-auto px-6 mb-3 rounded-xl mb-3 pointer-events-auto touch-none
+              drop-shadow animate__animated animate__fastest transition
+              transition-[max-height,padding-top,padding-bottom] duration-300" id="commentsView">
+      <div class="font-bold flex-shrink pb-4">
+        <span *ngIf="cluck.commentCount; else no">{{ cluck.commentCount | abbreviateCount }}</span>
+        <ng-template #no>No</ng-template> Comment{{cluck.commentCount != 1 ? 's': ''}}
+      </div>
+      <div *ngIf="cluck.commentCount; else noCommentsMessage" class="overflow-y-scroll flex-grow">
+        <app-comment-loader [cluck]="cluck" [addCommentObservable]="addCommentEvent.asObservable()"></app-comment-loader>
+      </div>
+      <ng-template #noCommentsMessage>
+        <div class="my-2 text-gray-400 text-sm">
+          Be the first to comment!
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="bg-white w-[90%] max-w-[400px] mx-auto py-4 px-6 rounded-t-xl pointer-events-auto touch-none
+              drop-shadow animate__animated animate__fastest {{ closing ? 'animate__slideOutDown' : 'animate__slideInUp' }}">
+      <div class="flex justify-center w-full pb-5">
+        <h1 class="flex-grow text-center font-bold">Comment</h1>
+        <button *ngIf="focused" type="button" class="absolute right-0 top-0 my-3 mr-7 active:scale-90 transition-all active:text-primary">
+          <fa-icon icon="angle-down"></fa-icon>
+        </button>
+      </div>
+      <app-cluck-text-form [rows]="rows"
+                           [showWordCount]="focused"
+                           (focus)="onCommentInputFocus()"
+                           (blur)="onCommentInputBlur()"
+                           (onPostCluck)="postComment($event)"
+                           postButtonText="Comment"
+                           textAreaPlaceholder="What do you think about this?"></app-cluck-text-form>
+    </div>
+  </div>
+</div>

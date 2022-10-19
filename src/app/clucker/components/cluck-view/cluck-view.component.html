@@ -16,7 +16,7 @@
         <div>{{cluck.body}}</div>
       </div>
       <div class="mt-1 border-t flex justify-evenly">
-        <button type="button" class="w-full rounded active:bg-gray-50 m-0 p-2 transition-colors text-primary">
+        <button (click)="comment()" type="button" class="w-full rounded active:bg-gray-50 m-0 p-2 transition-colors text-primary">
           <span class="mx-2 text-xs my-1">{{cluck.commentCount | abbreviateCount}}</span>
           <fa-icon icon="commenting"></fa-icon>
         </button>

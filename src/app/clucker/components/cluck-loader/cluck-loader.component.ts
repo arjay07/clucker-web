@@ -5,6 +5,8 @@ import {CluckService} from '@clucker/services/cluck.service';
 import {Cluck} from '@models/cluck';
 import {PageParams} from '@models/page';
 import {AuthService} from '@services/auth.service';
+import {Comment} from '@models/comment';
+import {PostComment} from '@models/post-comment';
 
 @Component({
   selector: 'app-cluck-loader',
@@ -20,8 +22,12 @@ export class CluckLoaderComponent implements OnInit {
   @Input()
   params?: PageParams;
 
+  activeCluck?: Cluck;
+
   @Input()
   userId?: number;
+
+  showComments = false;
 
   constructor(public cluckLoader: CluckLoaderService, private cluck: CluckService, private auth: AuthService) {
     this.targetElement = document.querySelector('html');
@@ -63,6 +69,19 @@ export class CluckLoaderComponent implements OnInit {
 
   trackByCluckId(index: number, cluck: Cluck) {
     return cluck.id;
+  }
+
+  openCommentScreen(commentCluck: Cluck) {
+    this.activeCluck = commentCluck;
+    this.showComments = true;
+  }
+
+  activeCluckChanged(cluck: Cluck) {
+    if (this.activeCluck) {
+      const index = this.cluckLoader.clucks.indexOf(this.activeCluck);
+      this.activeCluck = cluck;
+      this.cluckLoader.clucks[index] = cluck;
+    }
   }
 
 }

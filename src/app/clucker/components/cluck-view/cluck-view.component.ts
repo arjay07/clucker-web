@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Cluck} from '@models/cluck';
 import {User} from '@models/user';
 import {UserService} from '@services/user.service';
@@ -15,6 +15,9 @@ export class CluckViewComponent implements OnInit {
   cluck!: Cluck;
 
   author?: User;
+
+  @Output()
+  commentButtonActive: EventEmitter<Cluck> = new EventEmitter<Cluck>();
 
   constructor(private userService: UserService, private cluckService: CluckService) { }
 
@@ -35,6 +38,10 @@ export class CluckViewComponent implements OnInit {
     this.cluckService.removeEggFromCluck(this.cluck.id).subscribe({
       next: cluck => this.cluck = cluck
     });
+  }
+
+  comment() {
+    this.commentButtonActive.emit(this.cluck);
   }
 
 }
