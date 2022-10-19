@@ -1,8 +1,8 @@
 <div *ngIf="show" (click)="closeForm()" class="bg-opacity-40 bg-black w-screen min-h-screen min-w-full fixed top-0 left-0
                         animate__animated {{ closing ? 'animate__fadeOut' : 'animate__fadeIn' }} animate__fastest"></div>
-<div *ngIf="show" class="fixed left-0 bottom-0 w-screen pointer-events-none">
-  <div class="flex flex-col justify-end h-screen max-h-[800px] pointer-events-none">
-    <div class="bg-white w-[90%] max-w-[400px] mx-auto py-4 px-6 rounded-xl mb-3 pointer-events-auto
+<div *ngIf="show" class="fixed left-0 bottom-0 max-h-screen w-screen pointer-events-none">
+  <div class="flex flex-col justify-end pointer-events-none max-h-screen">
+    <div class="bg-white w-[90%] max-w-[400px] mx-auto py-4 max-h-[30vh] px-6 rounded-xl mb-3 pointer-events-auto
               drop-shadow animate__animated animate__fastest {{ closing ? 'animate__fadeOutDown' : 'animate__fadeInUp' }}">
       <app-compact-cluck-view [(cluck)]="cluck" (cluckChange)="emitCluck($event)" (closeButtonClick)="closeForm()" [hideX]="focused"></app-compact-cluck-view>
     </div>
@@ -10,7 +10,7 @@
     <div [ngClass]="{
           'animate__fadeOutDown': closing,
           'animate__fadeInUp': !closing,
-          'max-h-[500px]': !focusing,
+          'max-h-[35vh]': !focusing,
           'py-4': !focusing,
           'max-h-0': focusing,
           'overflow-hidden': focusing,
