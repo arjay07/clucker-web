@@ -33,6 +33,8 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { EditProfileComponent } from './screens/edit-profile/edit-profile.component';
 import { ScreenBarComponent } from './components/screen-bar/screen-bar.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { SettingsScreenComponent } from './screens/settings-screen/settings-screen.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { ScreenBarComponent } from './components/screen-bar/screen-bar.component
     AutofocusDirective,
     DropdownComponent,
     EditProfileComponent,
-    ScreenBarComponent
+    ScreenBarComponent,
+    SettingsComponent,
+    SettingsScreenComponent
   ],
     imports: [
         CommonModule,

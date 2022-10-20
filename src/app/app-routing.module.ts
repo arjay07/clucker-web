@@ -15,6 +15,7 @@ import {NotificationsScreenComponent} from '@clucker/screens/notifications-scree
 import {SearchScreenComponent} from '@clucker/screens/search-screen/search-screen.component';
 import {UserProfileScreenComponent} from '@clucker/screens/user-profile-screen/user-profile-screen.component';
 import {EditProfileComponent} from '@clucker/screens/edit-profile/edit-profile.component';
+import {SettingsScreenComponent} from '@clucker/screens/settings-screen/settings-screen.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,14 @@ const routes: Routes = [
     component: EditProfileComponent,
     data: {
       title: 'Edit Profile'
+    },
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'settings',
+    component: SettingsScreenComponent,
+    data: {
+      title: 'Settings'
     },
     canActivate: [ AuthGuard ]
   },
