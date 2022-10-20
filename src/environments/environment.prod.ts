@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  tokenKey: 'jwt',
+  api: 'https://clucker-api.herokuapp.com'
 };
