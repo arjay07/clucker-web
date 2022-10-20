@@ -3,9 +3,9 @@
     <button class="p-5 active:scale-90 transition-all" (click)="goBack()">
       <fa-icon icon="chevron-left" size="xl"></fa-icon>
     </button>
-    <button class="p-5 active:scale-90 transition-all">
-      <fa-icon icon="ellipsis-v" size="xl"></fa-icon>
-    </button>
+    <div class="absolute right-0 top-0">
+      <app-dropdown [dropdownItems]="dropdownItems"></app-dropdown>
+    </div>
   </div>
   <div class="my-2 w-screen flex justify-center items-center">
     <app-user-avatar iconSize="6x" [user]="user"></app-user-avatar>

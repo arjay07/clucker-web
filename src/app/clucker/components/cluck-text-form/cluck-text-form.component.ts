@@ -70,7 +70,6 @@ export class CluckTextFormComponent implements OnInit {
       console.error('Clipboard contents too large!');
     }
 
-
   }
 
   sendFocusEvent(event: FocusEvent) {

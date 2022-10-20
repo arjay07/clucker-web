@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {User} from '@models/user';
-import {UserService} from '@clucker/services/user.service';
 import {Subscription} from 'rxjs';
+import {UserService} from '@services/user.service';
 
 @Component({
   selector: 'app-edit-bio',

@@ -30,6 +30,8 @@ import { CluckTextFormComponent } from './components/cluck-text-form/cluck-text-
 import { EditBioComponent } from './components/edit-bio/edit-bio.component';
 import { ToggleClickDirective } from './directives/toggle-click.directive';
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { EditProfileComponent } from './screens/edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { AutofocusDirective } from './directives/autofocus.directive';
     CluckTextFormComponent,
     EditBioComponent,
     ToggleClickDirective,
-    AutofocusDirective
+    AutofocusDirective,
+    DropdownComponent,
+    EditProfileComponent
   ],
     imports: [
         CommonModule,
