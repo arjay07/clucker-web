@@ -1,6 +1,6 @@
 {
-  "name": "clucker-web",
-  "short_name": "clucker-web",
+  "name": "Clucker",
+  "short_name": "Clucker",
   "theme_color": "#ffffff",
   "background_color": "#fafafa",
   "display": "standalone",
