@@ -14,6 +14,8 @@ import {DiscoverScreenComponent} from '@clucker/screens/discover-screen/discover
 import {NotificationsScreenComponent} from '@clucker/screens/notifications-screen/notifications-screen.component';
 import {SearchScreenComponent} from '@clucker/screens/search-screen/search-screen.component';
 import {UserProfileScreenComponent} from '@clucker/screens/user-profile-screen/user-profile-screen.component';
+import {EditProfileComponent} from '@clucker/screens/edit-profile/edit-profile.component';
+import {SettingsScreenComponent} from '@clucker/screens/settings-screen/settings-screen.component';
 
 const routes: Routes = [
   {
@@ -57,7 +59,24 @@ const routes: Routes = [
   },
   {
     path: 'user/:username',
-    component: UserProfileScreenComponent
+    component: UserProfileScreenComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'edit-profile',
+    component: EditProfileComponent,
+    data: {
+      title: 'Edit Profile'
+    },
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'settings',
+    component: SettingsScreenComponent,
+    data: {
+      title: 'Settings'
+    },
+    canActivate: [ AuthGuard ]
   },
   {
     path: 'login',

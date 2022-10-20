@@ -27,6 +27,14 @@ import { CommentViewComponent } from './components/comment-view/comment-view.com
 import { CommentLoaderComponent } from './components/comment-loader/comment-loader.component';
 import { CompactCluckViewComponent } from './components/compact-cluck-view/compact-cluck-view.component';
 import { CluckTextFormComponent } from './components/cluck-text-form/cluck-text-form.component';
+import { EditBioComponent } from './components/edit-bio/edit-bio.component';
+import { ToggleClickDirective } from './directives/toggle-click.directive';
+import { AutofocusDirective } from './directives/autofocus.directive';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { EditProfileComponent } from './screens/edit-profile/edit-profile.component';
+import { ScreenBarComponent } from './components/screen-bar/screen-bar.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { SettingsScreenComponent } from './screens/settings-screen/settings-screen.component';
 
 
 @NgModule({
@@ -53,7 +61,15 @@ import { CluckTextFormComponent } from './components/cluck-text-form/cluck-text-
     CommentViewComponent,
     CommentLoaderComponent,
     CompactCluckViewComponent,
-    CluckTextFormComponent
+    CluckTextFormComponent,
+    EditBioComponent,
+    ToggleClickDirective,
+    AutofocusDirective,
+    DropdownComponent,
+    EditProfileComponent,
+    ScreenBarComponent,
+    SettingsComponent,
+    SettingsScreenComponent
   ],
     imports: [
         CommonModule,

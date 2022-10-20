@@ -59,16 +59,17 @@ export class CluckTextFormComponent implements OnInit {
   }
 
   onPaste(event: ClipboardEvent) {
-    event.preventDefault();
     const { clipboardData } = event;
     const text = clipboardData!.getData('text');
-    const words = text.split(' ');
-    let trimmed = '';
-    for (let i = 0; i < 5; i++) {
-      let word = words[i];
-      trimmed += word + ' ';
+
+    const words = text.split(/\s/).length;
+    const wordsLeft = 6 - this.cluckWords;
+
+    if (words > wordsLeft + 1) {
+      event.preventDefault();
+      console.error('Clipboard contents too large!');
     }
-    this.body = trimmed.trim();
+
   }
 
   sendFocusEvent(event: FocusEvent) {
