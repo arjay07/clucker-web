@@ -32,6 +32,7 @@ import { ToggleClickDirective } from './directives/toggle-click.directive';
 import { AutofocusDirective } from './directives/autofocus.directive';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { EditProfileComponent } from './screens/edit-profile/edit-profile.component';
+import { ScreenBarComponent } from './components/screen-bar/screen-bar.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { EditProfileComponent } from './screens/edit-profile/edit-profile.compon
     ToggleClickDirective,
     AutofocusDirective,
     DropdownComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ScreenBarComponent
   ],
     imports: [
         CommonModule,
