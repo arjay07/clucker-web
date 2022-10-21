@@ -15,7 +15,7 @@ export class CluckLoaderService {
   clucks: Cluck[] = [];
   page?: Page<Cluck>;
   currPage = 0;
-  
+
   clucks$ByObservablePool = new Map<CluckLoaderFunction, Observable<Page<Cluck>>>();
 
   constructor(private cluck: CluckService) { }
