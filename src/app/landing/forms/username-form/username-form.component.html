@@ -22,7 +22,7 @@
     <button type="submit"
             [disabled]="usernameField.invalid || checking"
             class="rounded-full p-3 py-1 text-white bg-primary w-full mt-8 mb-3 active:scale-95 highlight-none transition-all disabled:opacity-60">
-      Next <fa-duotone-icon [icon]="checking ? ['fad', 'spinner-third'] : 'chevron-right'" [spin]="checking"></fa-duotone-icon>
+      Next <fa-duotone-icon [icon]="['fad', 'spinner-third']" *ngIf="checking" [spin]="checking"></fa-duotone-icon><fa-icon *ngIf="!checking" icon="chevron-right"></fa-icon>
     </button>
   </div>
 </form>
