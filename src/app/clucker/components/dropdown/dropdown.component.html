@@ -2,7 +2,7 @@
   <button #toggleButton class="p-5 active:scale-90 transition-all" (click)="toggleMenu()">
     <fa-icon icon="ellipsis-v" size="xl" class="pointer-events-none"></fa-icon>
   </button>
-  <div #menu class="bg-white rounded-l drop-shadow w-[150px] mx-4 animate__animated animate__fastest" [ngClass]="{ 'animate__fadeInDown': showing, 'hidden': !showing }">
+  <div #menu class="z-10 bg-white rounded-l drop-shadow w-[150px] mx-4 animate__animated animate__fastest" [ngClass]="{ 'animate__fadeInDown': showing, 'hidden': !showing }">
     <button class="p-3 text-start w-full active:bg-gray-50 block{{item.classes ? ' ' + item.classes : ''}}" *ngFor="let item of dropdownItems" [routerLink]="item.destination" (click)="item.action ? item.action($event) : undefined" [ngClass]="{ 'border-t': item.separator }">{{item.label}}</button>
   </div>
 </div>
