@@ -33,6 +33,7 @@ export class CompactCluckViewComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService, private cluckService: CluckService) { }
 
   ngOnInit(): void {
+    this.unsubscribeUser();
     this.userSub = this.userService.getUserById(this.cluck.authorId)
       .subscribe({
         next: user => this.author = user
@@ -40,10 +41,12 @@ export class CompactCluckViewComponent implements OnInit, OnDestroy {
   }
 
   addEgg() {
+    this.unsubscribeAddEgg();
     this.addEggSub = this.cluckService.addEggToCluck(this.cluck.id).subscribe(cluck => this.updateCluck(cluck));
   }
 
   removeEgg() {
+    this.unsubscribeRemoveEgg();
     this.removeEggSub = this.cluckService.removeEggFromCluck(this.cluck.id).subscribe(cluck => this.updateCluck(cluck));
   }
 
@@ -52,14 +55,28 @@ export class CompactCluckViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.userSub)
-      this.userSub.unsubscribe();
 
+    this.unsubscribeUser();
+
+    this.unsubscribeAddEgg();
+
+    this.unsubscribeRemoveEgg();
+
+  }
+
+  unsubscribeAddEgg() {
     if (this.addEggSub)
       this.addEggSub.unsubscribe();
+  }
 
+  unsubscribeRemoveEgg() {
     if (this.removeEggSub)
       this.removeEggSub.unsubscribe();
+  }
+
+  unsubscribeUser() {
+    if (this.userSub)
+      this.userSub.unsubscribe();
   }
 
   private updateCluck(cluck: Cluck) {
