@@ -20,7 +20,6 @@ export class CluckLoaderService {
   loadClucks(observable: CluckLoaderFunction = this.cluck.getPersonalFeed, {success, complete}: { success?: (clucks: Page<Cluck>) => void, complete?: () => void} = {}) {
     this.loading = true;
     this.currPage = 0;
-    this.clucks = [];
     observable.bind(this.cluck)().subscribe({
       next: clucks => {
         this.page = clucks;
