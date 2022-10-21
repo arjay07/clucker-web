@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, shareReplay} from 'rxjs';
+import {map, Observable, of, shareReplay} from 'rxjs';
 import {User} from '@models/user';
 import {environment} from '@env';
 import {UserUpdateRequest} from '@models/user-update-request';
@@ -25,14 +25,26 @@ export class UserService {
 
   getUserById(id: number): Observable<User> {
     if (!this.users$ByIdPool[id]) {
-      this.users$ByIdPool[id] = this.http.get<User>(`${this.api}/users/${id}`).pipe(shareReplay());
+      this.users$ByIdPool[id] = this.http.get<User>(`${this.api}/users/${id}`)
+        .pipe(map(value => {
+          const { username } = value;
+          this.users$ByUsernamePool[username] = of(value);
+          return value;
+        }))
+        .pipe(shareReplay());
     }
     return this.users$ByIdPool[id];
   }
 
   getUserByUsername(username: string) {
     if(!this.users$ByUsernamePool[username]) {
-      this.users$ByUsernamePool[username] = this.http.get<User>(`${this.api}/users/username/${username}`).pipe(shareReplay());
+      this.users$ByUsernamePool[username] = this.http.get<User>(`${this.api}/users/username/${username}`)
+        .pipe(map(value => {
+          const { id } = value;
+          this.users$ByIdPool[id] = of(value);
+          return value;
+        }))
+        .pipe(shareReplay());
     }
     return this.users$ByUsernamePool[username];
   }
