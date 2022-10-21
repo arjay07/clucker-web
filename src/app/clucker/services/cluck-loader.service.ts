@@ -3,6 +3,7 @@ import {CluckService} from '@clucker/services/cluck.service';
 import {Page} from '@models/page';
 import {Cluck} from '@models/cluck';
 import {CluckLoaderFunction} from '@interfaces/cluck-loader-function.type';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,8 @@ export class CluckLoaderService {
   clucks: Cluck[] = [];
   page?: Page<Cluck>;
   currPage = 0;
+  
+  clucks$ByObservablePool = new Map<CluckLoaderFunction, Observable<Page<Cluck>>>();
 
   constructor(private cluck: CluckService) { }
 
