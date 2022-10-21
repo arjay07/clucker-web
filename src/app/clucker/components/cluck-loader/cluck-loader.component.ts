@@ -1,19 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
-import {Subject} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import {CluckService} from '@clucker/services/cluck.service';
 import {Cluck} from '@models/cluck';
 import {PageParams} from '@models/page';
 import {AuthService} from '@services/auth.service';
-import {Comment} from '@models/comment';
-import {PostComment} from '@models/post-comment';
 
 @Component({
   selector: 'app-cluck-loader',
   templateUrl: './cluck-loader.component.html',
   styleUrls: ['./cluck-loader.component.sass']
 })
-export class CluckLoaderComponent implements OnInit {
+export class CluckLoaderComponent implements OnInit, OnDestroy {
 
   @Input()
   mode!: 'FEED' | 'DISCOVER' | 'SEARCH' | 'QUERY' | 'MY_CLUCKS' | 'USER_CLUCKS' | 'DEFAULT';
@@ -28,6 +26,8 @@ export class CluckLoaderComponent implements OnInit {
   userId?: number;
 
   showComments = false;
+
+  currentUser$?: Subscription;
 
   constructor(public cluckLoader: CluckLoaderService, private cluck: CluckService, private auth: AuthService) {
     this.targetElement = document.querySelector('html');
@@ -51,7 +51,7 @@ export class CluckLoaderComponent implements OnInit {
     } else if (this.mode === 'QUERY') {
       this.cluckLoader.loadClucks(() => this.cluck.getClucks(this.params), callbacks);
     } else if (this.mode === 'MY_CLUCKS') {
-      this.auth.currentUser.subscribe(user => {
+      this.currentUser$ = this.auth.currentUser.subscribe(user => {
         this.cluckLoader.loadClucks(() => this.cluck.getUserClucks(user.id), callbacks);
       });
     } else if (this.mode === 'USER_CLUCKS') {
@@ -81,6 +81,12 @@ export class CluckLoaderComponent implements OnInit {
       const index = this.cluckLoader.clucks.indexOf(this.activeCluck);
       this.activeCluck = cluck;
       this.cluckLoader.clucks[index] = cluck;
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.currentUser$) {
+      this.currentUser$.unsubscribe();
     }
   }
 

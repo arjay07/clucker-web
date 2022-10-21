@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {CluckFormComponent} from '@clucker/components/cluck-form/cluck-form.component';
 import {PostCluck} from '@models/post-cluck';
 import {Cluck} from '@models/cluck';
 import {PostComment} from '@models/post-comment';
 import {CluckService} from '@clucker/services/cluck.service';
-import {Subject} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import {Comment} from '@models/comment';
 
 @Component({
@@ -12,7 +12,7 @@ import {Comment} from '@models/comment';
   templateUrl: './comment-form.component.html',
   styleUrls: ['./comment-form.component.sass']
 })
-export class CommentFormComponent implements OnInit {
+export class CommentFormComponent implements OnInit, OnDestroy {
   closing = false;
 
   @Input()
@@ -35,6 +35,8 @@ export class CommentFormComponent implements OnInit {
 
   addCommentEvent = new Subject<Comment>();
 
+  postComment$?: Subscription;
+
   constructor(private cluckService: CluckService) { }
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class CommentFormComponent implements OnInit {
   postComment(postCluck: PostCluck) {
     const comment: PostComment = { ...postCluck };
 
-    this.cluckService.postComment(this.cluck.id, comment).subscribe({
+    this.postComment$ = this.cluckService.postComment(this.cluck.id, comment).subscribe({
       next: data => {
         this.addCommentEvent.next(data);
         this.cluck.commentCount++;
@@ -77,5 +79,11 @@ export class CommentFormComponent implements OnInit {
 
   emitCluck(event: Cluck) {
     this.cluckChange.emit(event);
+  }
+
+  ngOnDestroy() {
+    if (this.postComment$) {
+      this.postComment$.unsubscribe();
+    }
   }
 }
