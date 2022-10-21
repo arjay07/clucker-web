@@ -6,11 +6,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DropdownItems} from '../../../types/DropdownItems';
 import {AuthService} from '@services/auth.service';
 import {Subscription} from 'rxjs';
+import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
 
 @Component({
   selector: 'app-user-profile-screen',
   templateUrl: './user-profile-screen.component.html',
-  styleUrls: ['./user-profile-screen.component.sass']
+  styleUrls: ['./user-profile-screen.component.sass'],
+  providers: [
+    CluckLoaderService
+  ]
 })
 export class UserProfileScreenComponent implements OnInit, OnDestroy {
 
@@ -32,7 +36,7 @@ export class UserProfileScreenComponent implements OnInit, OnDestroy {
         const { username } = params;
         this.user$ = this.userService.getUserByUsername(username).subscribe(user => {
           this.user = user;
-          this.self$ = this.userService.getSelf().subscribe(user => {
+          this.self$ = this.userService.self.subscribe(user => {
             if (this.user) {
               this.currentUserProfile = this.user.id === user.id;
               if (this.currentUserProfile) {

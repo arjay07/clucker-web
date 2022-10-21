@@ -35,6 +35,7 @@ import { EditProfileComponent } from './screens/edit-profile/edit-profile.compon
 import { ScreenBarComponent } from './components/screen-bar/screen-bar.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SettingsScreenComponent } from './screens/settings-screen/settings-screen.component';
+import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
 
 
 @NgModule({
