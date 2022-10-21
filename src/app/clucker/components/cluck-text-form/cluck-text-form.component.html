@@ -1,6 +1,7 @@
 <form (submit)="sendCluck($event)">
   <div class="my-2 relative">
         <textarea name="body"
+                  [autofocus]="true"
                   (keydown)="onKeyDown($event)"
                   (paste)="onPaste($event)"
                   [(ngModel)]="body"
