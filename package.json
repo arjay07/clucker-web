@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "start-pwa": "ng build && npx serve dist/clucker-web",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
