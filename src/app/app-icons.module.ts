@@ -9,9 +9,9 @@ import {
   faCompass, faEdit, faEgg, faEllipsisVertical,
   faHome, faMinus, faPaperPlaneTop,
   faPlus, faSave, faSearch, faShare, faShareNodes,
-  faSpinner, faTimes, faUserCircle, faX
+  faSpinner, faTimes, faUser, faUserCheck, faUserCircle, faUserMinus, faUserPlus, faX
 } from '@fortawesome/pro-solid-svg-icons';
-import {faSpinnerThird} from '@fortawesome/pro-duotone-svg-icons';
+import {faSpinnerThird, faUsers} from '@fortawesome/pro-duotone-svg-icons';
 
 const icons: IconDefinition[] = [
   faChevronRight,
@@ -39,7 +39,12 @@ const icons: IconDefinition[] = [
   faEllipsisVertical,
   faEdit,
   faAngleDown,
-  faSave
+  faSave,
+  faUserPlus,
+  faUserCheck,
+  faUserMinus,
+  faUser,
+  faUsers
 ];
 
 @NgModule({

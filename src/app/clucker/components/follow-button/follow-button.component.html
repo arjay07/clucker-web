@@ -1,0 +1,11 @@
+<button type="button"
+        [disabled]="loading"
+        (click)="toggleFollow()"
+        [ngClass]="{
+          'bg-primary text-white active:bg-transparent active:text-primary': !following,
+          'bg-transparent text-primary active:bg-primary active:text-white': following
+        }"
+        class="outline outline-primary rounded-full py-1 px-2 text-xs
+                               transition-colors">
+  {{ following ? 'Following' : 'Follow' }} <fa-icon [icon]="loading ? 'circle-notch' : following ? 'user-check' : 'user-plus'" [spin]="loading"></fa-icon>
+</button>

@@ -36,6 +36,7 @@ import { ScreenBarComponent } from './components/screen-bar/screen-bar.component
 import { SettingsComponent } from './components/settings/settings.component';
 import { SettingsScreenComponent } from './screens/settings-screen/settings-screen.component';
 import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
+import { FollowButtonComponent } from './components/follow-button/follow-button.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
     EditProfileComponent,
     ScreenBarComponent,
     SettingsComponent,
-    SettingsScreenComponent
+    SettingsScreenComponent,
+    FollowButtonComponent
   ],
     imports: [
         CommonModule,
