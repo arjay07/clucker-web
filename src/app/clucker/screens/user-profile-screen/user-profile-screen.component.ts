@@ -35,19 +35,22 @@ export class UserProfileScreenComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       if (params['username']) {
         const { username } = params;
-        const userO$ = this.userService.getUserByUsername(username);
-        this.user$ = userO$.subscribe(user => {
-          this.user = user;
-          this.checkSelf();
-        });
-        this.reset$ = this.userService.getUserByUsername(username, false).subscribe(
-          user => {
-            this.user = user;
-            this.checkSelf();
-          }
-        );
+        this.setUser(username);
       }
     });
+  }
+
+  private setUser(username: string) {
+    this.user$ = this.userService.getUserByUsername(username).subscribe(user => {
+      this.user = user;
+      this.checkSelf();
+    });
+    this.reset$ = this.userService.getUserByUsername(username, false).subscribe(
+      user => {
+        this.user = user;
+        this.checkSelf();
+      }
+    );
   }
 
   private checkSelf() {
