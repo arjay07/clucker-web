@@ -29,6 +29,10 @@ export class CluckService {
     return this.http.get<Page<Cluck>>(`${this.api}/clucks`, { params });
   }
 
+  getLikedClucks(userId: number, params: PageParams = { sort: [ 'posted,desc' ] }): Observable<Page<Cluck>> {
+    return this.http.get<Page<Cluck>>(`${this.api}/users/${userId}/clucks/liked`, { params });
+  }
+
   getUserClucks(userId: number, params: PageParams = { sort: [ 'posted,desc' ] }): Observable<Page<Cluck>> {
     return this.http.get<Page<Cluck>>(`${this.api}/users/${userId}/clucks`, { params });
   }

@@ -38,22 +38,27 @@ export class UserProfileScreenComponent implements OnInit, OnDestroy {
         const userO$ = this.userService.getUserByUsername(username);
         this.user$ = userO$.subscribe(user => {
           this.user = user;
-          this.self$ = this.userService.self.subscribe(user => {
-            if (this.user) {
-              this.currentUserProfile = this.user.id === user.id;
-              if (this.currentUserProfile) {
-                this.setCurrentUserMenu();
-              } else {
-                this.setOtherUserMenu();
-              }
-            }
-          });
+          this.checkSelf();
         });
         this.reset$ = this.userService.getUserByUsername(username, false).subscribe(
           user => {
             this.user = user;
+            this.checkSelf();
           }
         );
+      }
+    });
+  }
+
+  private checkSelf() {
+    this.self$ = this.userService.self.subscribe(self => {
+      if (this.user) {
+        this.currentUserProfile = this.user.id === self.id;
+        if (this.currentUserProfile) {
+          this.setCurrentUserMenu();
+        } else {
+          this.setOtherUserMenu();
+        }
       }
     });
   }

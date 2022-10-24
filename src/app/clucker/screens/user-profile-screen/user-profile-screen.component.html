@@ -50,7 +50,13 @@
     </div>
   </div>
 </div>
-<div class="container mx-auto max-w-lg">
-  <app-cluck-loader *ngIf="user" [mode]="currentUserProfile ? 'MY_CLUCKS' : 'USER_CLUCKS'" [userId]="user.id">
-  </app-cluck-loader>
+<div class="container mx-auto max-w-lg" [ngSwitch]="currentPage">
+  <ng-container *ngSwitchCase="'MY_CLUCKS'">
+    <app-cluck-loader *ngIf="user" [mode]="currentUserProfile ? 'MY_CLUCKS' : 'USER_CLUCKS'" [userId]="user.id">
+    </app-cluck-loader>
+  </ng-container>
+  <ng-container *ngSwitchCase="'LIKED_CLUCKS'">
+    <app-cluck-loader *ngIf="user" mode="LIKED_CLUCKS" [userId]="user.id">
+    </app-cluck-loader>
+  </ng-container>
 </div>
