@@ -14,7 +14,7 @@ import {AuthService} from '@services/auth.service';
 export class CluckLoaderComponent implements OnInit, OnDestroy {
 
   @Input()
-  mode!: 'FEED' | 'DISCOVER' | 'SEARCH' | 'QUERY' | 'MY_CLUCKS' | 'USER_CLUCKS' | 'DEFAULT';
+  mode!: 'FEED' | 'DISCOVER' | 'SEARCH' | 'QUERY' | 'MY_CLUCKS' | 'USER_CLUCKS' | 'LIKED_CLUCKS' | 'DEFAULT';
   targetElement: any;
 
   @Input()
@@ -46,20 +46,31 @@ export class CluckLoaderComponent implements OnInit, OnDestroy {
   }
 
   loadClucks(callbacks?: { success?: () => void, complete?: () => void }) {
-    if (this.mode === 'FEED') {
-      this.cluckLoader.loadClucks(this.cluck.getPersonalFeed, callbacks);
-    } else if (this.mode === 'QUERY') {
-      this.cluckLoader.loadClucks(() => this.cluck.getClucks(this.params), callbacks);
-    } else if (this.mode === 'MY_CLUCKS') {
-      this.currentUser$ = this.auth.currentUser.subscribe(user => {
-        this.cluckLoader.loadClucks(() => this.cluck.getUserClucks(user.id), callbacks);
-      });
-    } else if (this.mode === 'USER_CLUCKS') {
-      if (!this.userId)
-        throw new Error('\'userId\' is required with CluckLoader mode USER_CLUCKS.');
-      this.cluckLoader.loadClucks(() => this.cluck.getUserClucks(this.userId!), callbacks);
-    } else {
-      console.error(`Unimplemented CluckLoader mode: ${this.mode}`);
+    switch (this.mode) {
+      case 'FEED':
+        this.cluckLoader.loadClucks(this.cluck.getPersonalFeed, callbacks);
+        break;
+      case 'QUERY':
+        this.cluckLoader.loadClucks(() => this.cluck.getClucks(this.params), callbacks);
+        break;
+      case 'MY_CLUCKS':
+        this.currentUser$ = this.auth.currentUser.subscribe(user => {
+          this.cluckLoader.loadClucks(() => this.cluck.getUserClucks(user.id), callbacks);
+        });
+        break;
+      case 'USER_CLUCKS':
+        if (!this.userId)
+          throw new Error('\'userId\' is required with CluckLoader mode USER_CLUCKS.');
+        this.cluckLoader.loadClucks(() => this.cluck.getUserClucks(this.userId!), callbacks);
+        break;
+      case 'LIKED_CLUCKS':
+        if (!this.userId)
+          throw new Error('\'userId\' is required with CluckLoader mode LIKED_CLUCKS.');
+        this.cluckLoader.loadClucks(() => this.cluck.getLikedClucks(this.userId!), callbacks);
+        break;
+      default:
+        console.error(`Unimplemented CluckLoader mode: ${this.mode}`);
+        break;
     }
   }
 
