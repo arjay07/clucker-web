@@ -1,1 +1,9 @@
-<p>discover-screen works!</p>
+<div class="py-2" *ngIf="!loading; else spinner">
+  <app-cluck-loader mode="DISCOVER"></app-cluck-loader>
+</div>
+
+<ng-template #spinner>
+  <div class="my-2 py-2 text-center">
+    <fa-icon icon="circle-notch" class="text-primary" [spin]="loading"></fa-icon>
+  </div>
+</ng-template>

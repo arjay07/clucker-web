@@ -7,9 +7,15 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MyFeedScreenComponent implements OnInit {
 
+  loading = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onLoading(loading: boolean) {
+    this.loading = loading;
   }
 
 }
