@@ -20,7 +20,7 @@ export class UserService {
   self$: Observable<User>;
 
   constructor(private http: HttpClient) {
-    this.self$ = this.http.get<User>(`${this.api}/users/self`).pipe(shareReplay(1));
+    this.self$ = this.http.get<User>(`${this.api}/users/self`);
   }
 
   getUserById(id: number, cached: boolean = true): Observable<User> {

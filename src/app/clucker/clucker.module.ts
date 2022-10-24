@@ -37,6 +37,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { SettingsScreenComponent } from './screens/settings-screen/settings-screen.component';
 import {CluckLoaderService} from '@clucker/services/cluck-loader.service';
 import { FollowButtonComponent } from './components/follow-button/follow-button.component';
+import { NoFollowingComponent } from './components/no-following/no-following.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { FollowButtonComponent } from './components/follow-button/follow-button.
     ScreenBarComponent,
     SettingsComponent,
     SettingsScreenComponent,
-    FollowButtonComponent
+    FollowButtonComponent,
+    NoFollowingComponent
   ],
     imports: [
         CommonModule,
