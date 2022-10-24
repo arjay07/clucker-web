@@ -6,7 +6,7 @@ import {
   faBell,
   faChevronLeft,
   faChevronRight, faCircle, faCircleNotch, faComment, faCommenting,
-  faCompass, faEdit, faEgg, faEllipsisVertical,
+  faCompass, faEdit, faEgg, faEggFried, faEllipsisVertical,
   faHome, faMinus, faPaperPlaneTop,
   faPlus, faSave, faSearch, faShare, faShareNodes,
   faSpinner, faTimes, faUser, faUserCheck, faUserCircle, faUserMinus, faUserPlus, faX
@@ -44,7 +44,8 @@ const icons: IconDefinition[] = [
   faUserCheck,
   faUserMinus,
   faUser,
-  faUsers
+  faUsers,
+  faEggFried
 ];
 
 @NgModule({
