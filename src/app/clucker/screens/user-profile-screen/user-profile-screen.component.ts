@@ -25,6 +25,7 @@ export class UserProfileScreenComponent implements OnInit, OnDestroy {
 
   user$?: Subscription;
   self$?: Subscription;
+  reset$?: Subscription;
 
   constructor(private userService: UserService,
               private auth: AuthService,
@@ -34,7 +35,8 @@ export class UserProfileScreenComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       if (params['username']) {
         const { username } = params;
-        this.user$ = this.userService.getUserByUsername(username).subscribe(user => {
+        const userO$ = this.userService.getUserByUsername(username);
+        this.user$ = userO$.subscribe(user => {
           this.user = user;
           this.self$ = this.userService.self.subscribe(user => {
             if (this.user) {
@@ -47,6 +49,11 @@ export class UserProfileScreenComponent implements OnInit, OnDestroy {
             }
           });
         });
+        this.reset$ = this.userService.getUserByUsername(username, false).subscribe(
+          user => {
+            this.user = user;
+          }
+        );
       }
     });
   }

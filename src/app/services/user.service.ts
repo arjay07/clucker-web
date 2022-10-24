@@ -23,7 +23,10 @@ export class UserService {
     this.self$ = this.http.get<User>(`${this.api}/users/self`).pipe(shareReplay(1));
   }
 
-  getUserById(id: number): Observable<User> {
+  getUserById(id: number, cached: boolean = true): Observable<User> {
+    if (!cached) {
+      return this.http.get<User>(`${this.api}/users/${id}`);
+    }
     if (!this.users$ByIdPool[id]) {
       this.users$ByIdPool[id] = this.http.get<User>(`${this.api}/users/${id}`)
         .pipe(map(value => {
@@ -36,7 +39,10 @@ export class UserService {
     return this.users$ByIdPool[id];
   }
 
-  getUserByUsername(username: string) {
+  getUserByUsername(username: string, cached: boolean = true) {
+    if (!cached) {
+      return this.http.get<User>(`${this.api}/users/username/${username}`);
+    }
     if(!this.users$ByUsernamePool[username]) {
       this.users$ByUsernamePool[username] = this.http.get<User>(`${this.api}/users/username/${username}`)
         .pipe(map(value => {
@@ -44,7 +50,7 @@ export class UserService {
           this.users$ByIdPool[id] = of(value);
           return value;
         }))
-        .pipe(shareReplay());
+        .pipe(shareReplay({ refCount: false, windowTime: 1000 }));
     }
     return this.users$ByUsernamePool[username];
   }
